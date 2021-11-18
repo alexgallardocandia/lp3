@@ -1,0 +1,18 @@
+-- Table: clientes
+
+-- DROP TABLE clientes;
+
+CREATE TABLE clientes
+(
+  id_cliente serial NOT NULL,
+  nombre character varying(60) NOT NULL,
+  apellido character varying(60) NOT NULL,
+  fec_nac date,
+  genero character varying(20),
+  CONSTRAINT clientes_pkey PRIMARY KEY (id_cliente)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE clientes
+  OWNER TO postgres;

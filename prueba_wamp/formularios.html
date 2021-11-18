@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Formularios</title>
+		<script type="text/javascript">
+			function validar(){
+				var error = '';
+				if(document.frmdatos.nombre.value.length<3)
+				error += '- Ingrese el nombre minimo 3 caracteres\n';
+				if(document.frmdatos.apellido.value.length<3)
+				error += '- Ingrese el apellido minimo 3 caracteres\n';				
+				if(error) alert(error);	
+				document.resultado = (error == '');
+			}
+		</script>
+	</head>
+	<body>
+		<form name="frmdatos" action="resultado.php" method="post" 
+		onSubmit="javascript:validar();return document.resultado">
+			<fieldset>
+				<legend>Datos Personales</legend>
+			Nombre:
+			<input type="text" name="nombre"/><br><br>
+			Apellido:
+			<input type="text" name="apellido" /><br><br>
+			Fecha Nacimiento
+			<input type="date" name="fecnac" /><br><br>
+			Genero:
+			<input type="radio" name="genero" value="masculino"/>Masculino
+			<input type="radio" name="genero" value="femenino" checked/>Femenino<br>
+			<input type="submit" value="Enviar"/>
+			<input type="reset" value="Cancelar"/>
+			</fieldset>
+		</form>
+	</body>
+</html>
