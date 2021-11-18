@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -45,8 +45,8 @@
                                             <div class="col-lg-6">
                                             <input type="hidden" name="accion" value="2"/><!--bandera-->
                                             <input type="hidden" name="vart_cod" value="<?php echo $resultado[0]['art_cod']?>"/>
-                                            <input type="text" name="vart_codbarra" class="form-control" value="<?php echo $resultado[0]['art_codbarra'];?>" required autofocus>
-                                            </div>   
+                                            <input type="number" min="1" pattern="^[0-9]+" name="vart_codbarra" class="form-control" value="<?php echo $resultado[0]['art_codbarra'];?>" required autofocus>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2">Marca:</label>
@@ -55,36 +55,36 @@
                                                     <optgroup label="Elegido">
                                                         <?php $consul = consultas::get_datos("select * from v_articulo where art_cod=".$_GET['vart_cod']); ?>
                                                         <option value="<?php echo $resultado[0]['mar_cod']; ?>" selected><?php  echo $consul[0]['mar_descri']; ?>
-                                                            
-                                                        </option>    
+
+                                                        </option>
                                                     </optgroup>
                                                     <optgroup label="Actualizar">
                                                         <?php
                                                         $modu= consultas::get_datos("select * from marca");
-                                                        foreach ($modu as $valor){?> 
+                                                        foreach ($modu as $valor){?>
                                                         <option value="<?php echo $valor['mar_cod']; ?>"><?php echo $valor['mar_cod']."-".$valor['mar_descri']; ?></option>
-                                                        <?php } ?>      
-                                                    </optgroup> 
+                                                        <?php } ?>
+                                                    </optgroup>
                                                 </select>
-                                            </div>   
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2">Descripción:</label>
-                                            <div class="col-lg-6">                                                
+                                            <div class="col-lg-6">
                                             <input type="text" name="vart_descri" class="form-control" value="<?php echo $resultado[0]['art_descri'];?>" required autofocus>
-                                            </div>   
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2">P. Compra:</label>
                                             <div class="col-lg-6">
-                                            <input type="number" name="vart_precioc" class="form-control" value="<?php echo $resultado[0]['art_precioc'];?>" required autofocus>
-                                            </div>   
+                                            <input type="number" min="1" pattern="^[0-9]+" name="vart_precioc" class="form-control" value="<?php echo $resultado[0]['art_precioc'];?>" required autofocus>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2">P. Venta:</label>
                                             <div class="col-lg-6">
-                                            <input type="number" name="vart_preciov" class="form-control" value="<?php echo $resultado[0]['art_preciov'];?>" required autofocus>
-                                            </div>   
+                                            <input type="number" min="1" pattern="^[0-9]+" name="vart_preciov" class="form-control" value="<?php echo $resultado[0]['art_preciov'];?>" required autofocus>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -94,18 +94,18 @@
                                                     <optgroup label="Elegido">
                                                         <?php $consul = consultas::get_datos("select * from v_articulo where art_cod=".$_GET['vart_cod']); ?>
                                                         <option value="<?php echo $resultado[0]['tipo_cod']; ?>" selected><?php  echo $consul[0]['tipo_descri']; ?>
-                                                            
-                                                        </option>    
+
+                                                        </option>
                                                     </optgroup>
                                                     <optgroup label="Actualizar">
                                                         <?php
                                                         $modu= consultas::get_datos("select * from tipo_impuesto");
-                                                        foreach ($modu as $valor){?> 
+                                                        foreach ($modu as $valor){?>
                                                         <option value="<?php echo $valor['tipo_cod']; ?>"><?php echo $valor['tipo_cod']."-".$valor['tipo_descri']; ?></option>
-                                                        <?php } ?>      
-                                                    </optgroup> 
+                                                        <?php } ?>
+                                                    </optgroup>
                                                 </select>
-                                            </div>   
+                                            </div>
                                         </div>
                                     <div class="box-footer">
                                         <button type="submit" class="btn btn-warning pull-right">
@@ -114,16 +114,14 @@
                                     </div>
                                 </form>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <!--FIN FILA-->
                 </div>
                 <!--FIN CONTENEDOR-->
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
-            </div>                  
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+            </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
     </body>
 </html>
-
-

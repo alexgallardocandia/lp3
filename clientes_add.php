@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -32,19 +32,18 @@
                                         <a href="clientes_index.php" class="btn btn-primary pull-rigth btn-sm" data-title="Volver" rel="tooltip">
                                             <i class="fa fa-arrow-left">    </i>
                                         </a>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <form action="clientes_control.php" method="post" accept-charset="utf-8" class="form-horizontal">
                                     <div class="box-body">
                                         <input type="hidden" name="vcli_cod" value="0" />
                                         <input type="hidden" name="accion" value="1" /><!--Bandera-->
-                                        <div class="form-group"> 
+                                        <div class="form-group">
                                             <label class="control-label col-lg-2">C.I. N°</label>
                                             <div class="col-lg-4">
-                                                <input type="number" name="vcli_ci" class="form-control" required="" autofocus="" min="
-                                                1" placeholder="Ingrese el CI del cliente">
+                                                <input type="number"  name="vcli_ci" class="form-control" required="" autofocus="" min="1" pattern="^[0-9]+" placeholder="Ingrese el CI del cliente">
                                             </div>
-                                        </div> 
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Nombres</label>
                                             <div class="col-lg-6">
@@ -60,15 +59,15 @@
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Telefono</label>
                                             <div class="col-lg-4">
-                                                <input type="text" name="vcli_telefono" class="form-control" placeholder="Ingrese el telefono del cliente">
+                                                <input type="text" name="vcli_telefono" class="form-control" required placeholder="Ingrese el telefono del cliente">
                                             </div>
-                                        </div>  
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Dirección</label>
                                             <div class="col-lg-6">
-                                                <textarea class="form-control" name="vcli_direcc" placeholder="Ingrese la dirección del cliente"></textarea>
+                                                <textarea class="form-control" name="vcli_direcc" required placeholder="Ingrese la dirección del cliente"></textarea>
                                             </div>
-                                        </div>                                    
+                                        </div>
                                     </div>
                                     <div class="box-footer">
                                         <button type="reset" class="btn btn-default">
@@ -77,18 +76,17 @@
                                         <button type="submit" class="btn btn-primary pull-right">
                                             <i class="fa fa-floppy-o"></i>Guardar
                                         </button>
-                                    </div>    
+                                    </div>
                                 </form>
-                                
+
                             </div>
                         </div>
                     </div>
                 </div>
-             
+
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
-            </div>                  
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+            </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
     </body>
 </html>
-
