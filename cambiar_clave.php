@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -29,39 +29,50 @@
                             <div class="box box-primary"
                             >
                                 <div class="box-header"><!--inicio header-->
-                                    <i class="ion ion-plus"></i>
+                                    <i class="fa fa-expeditedssl" aria-hidden="true"></i>
+
                                     <h3 class="box-title">Cambiar Clave</h3>
-                                    
+
                                 </div><!--fin header-->
                                 <form action="cambiar_control.php" method="post" accept-charset="utf-8" class="form-horizontal">
                                     <div class="box-body">
                                     	 <div class="form-group">
-                                            <label class="col-lg-3 control-label">Usuario</label> 
+                                            <label class="col-lg-3 control-label">Usuario</label>
                                             <div class="col-lg-8">
                                                 <input type="text" name="vusu_nick" value="<?php echo $_SESSION['usu_nick'] ?>" class="form-control" disabled />
-                                            </div>   
-                                        </div> 
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <input type="hidden" name="accion" value="1"/><!--bandera-->
-                                            <label class="col-lg-3 control-label">Clave Actual</label> 
+                                            <label class="col-lg-3 control-label">Clave Actual</label>
                                             <div class="col-lg-8">
                                                 <input type="password" name="vclave_actual" class="form-control" required autofocus />
-                                            </div>   
-                                        </div> 
+                                            </div>
+                                        </div>
+                                        <?php
+                                          $con = "select usu_clave from v_usuarios where usu_nick='".$_SESSION['usu_nick']."'";
+                                          $clave = consultas::get_datos($con);
+                                          if ($clave[0]['usu_clave']== $_REQUEST['vclave_actual']) {?>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label">Clave Nueva</label>
+                                                <div class="col-lg-8">
+                                                    <input type="password" name="vclave_nueva" class="form-control" required autofocus />
+                                                </div>
+                                            </div>
+                                        <?php }else{?>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label">Clave Nueva</label>
+                                                <div class="col-lg-8">
+                                                    <input type="password" name="vclave_nueva" class="form-control" required autofocus disabled />
+                                                </div>
+                                            </div>
+                                        <?php }?>
                                         <div class="form-group">
-                                            
-                                            <label class="col-lg-3 control-label">Clave Nueva</label> 
-                                            <div class="col-lg-8">
-                                                <input type="password" name="vclave_nueva" class="form-control" required autofocus />
-                                            </div>   
-                                        </div> 
-                                        <div class="form-group">
-                                           
-                                            <label class="col-lg-3 control-label">Repita Clave Nueva</label> 
+                                            <label class="col-lg-3 control-label">Repita Clave Nueva</label>
                                             <div class="col-lg-8">
                                                 <input type="password" name="vclave_nuevar" class="form-control" required autofocus />
-                                            </div>   
-                                        </div>      
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="box-footer">
                                         <button type="submit" class="btn btn-primary pull-right">
@@ -69,18 +80,18 @@
                                         </button>
                                     </div>
                                 </form>
-                                       
-                                       
+
+
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <!--FIN FILA-->
                 </div>
                 <!--FIN CONTENEDOR-->
-             
+
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
-            </div>                  
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+            </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
     </body>
 </html>

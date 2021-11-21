@@ -27,5 +27,3 @@
 
 		header('location:menu.php');
 	}
-
-
