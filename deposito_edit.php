@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -43,13 +43,13 @@
                                         <div class="form-group">
                                             <input type="hidden" name="accion" value="2"/><!--bandera-->
                                             <input type="hidden" name="vdep_cod" value="<?php echo $resultado[0]['dep_cod']?>"/>
-                                            
 
-                                            <label class="col-lg-1 control-label">Descripcion</label> 
+
+                                            <label class="col-lg-1 control-label">Descripcion</label>
                                             <div class="col-lg-8">
                                                 <input type="text" name="vdep_descri" class="form-control" value="<?php echo $resultado[0]['dep_descri']; ?>" required autofocus />
-                                            </div>   
-                                        </div>      
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label class="col-lg-1 control-label">Sucursal</label>
                                             <div class="col-lg-6 col-sm-12 col-xs-12 col-md-12">
@@ -57,22 +57,22 @@
                                                     <optgroup label="Elegido">
                                                         <?php $consul = consultas::get_datos("select * from v_deposito where dep_cod=".$_GET['vdep_cod']); ?>
 
-                                                        <option  selected value="<?php echo $resultado[0]['id_sucursal']; ?>"><?php  echo $consul[0]['sucursal']; ?>
-                                                            
-                                                        </option>                                              
-                                                            
+                                                        <option  selected value="<?php echo $resultado[0]['id_sucursal']; ?>"><?php  echo $consul[0]['suc_descri']; ?>
+
+                                                        </option>
+
                                                     </optgroup>
                                                     <optgroup label="Actualizar">
                                                         <?php
                                                             $sucu= consultas::get_datos("select * from sucursal");
-                                                            foreach ($sucu as $valor){?> 
+                                                            foreach ($sucu as $valor){?>
                                                             <option value="<?php echo $valor['id_sucursal']; ?>"><?php echo $valor['id_sucursal']."-".$valor['suc_descri']; ?></option>
-                                                        <?php } ?>      
+                                                        <?php } ?>
                                                     </optgroup>
-                                                  
+
                                                 </select>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="box-footer">
@@ -81,20 +81,18 @@
                                         </button>
                                     </div>
                                 </form>
-                                       
-                                       
+
+
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <!--FIN FILA-->
                 </div>
                 <!--FIN CONTENEDOR-->
-             
+
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
-            </div>                  
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+            </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
     </body>
 </html>
-
-

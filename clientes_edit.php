@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -29,7 +29,7 @@
 	                            <?php if (!empty($_SESSION['mensaje'])) {?>
 	                                <div class="alert alert-danger" role="alert" id="mensaje">
 	                                    <span class="glyphicon glyphicon-exclamation-sign"></span>
-	                                <?php echo $_SESSION['mensaje']; 
+	                                <?php echo $_SESSION['mensaje'];
 	                                    $_SESSION['mensaje']='';?>
 	                                </div>
 	                            <?php } ?>
@@ -46,12 +46,12 @@
 											<?php $resultado = consultas::get_datos("select * from clientes where cli_cod=".$_GET['vcli_cod']) ?>
                                         <input type="hidden" name="vcli_cod" value="<?php echo $resultado[0]['cli_cod'] ?>" />
                                         <input type="hidden" name="accion" value="2" /><!--Bandera-->
-                                        <div class="form-group"> 
+                                        <div class="form-group">
                                             <label class="control-label col-lg-2">C.I. N°</label>
                                             <div class="col-lg-4">
-                                                <input type="number" name="vcli_ci" class="form-control" value="<?php echo $resultado[0]['cli_ci'] ?>">
+                                                <input type="number" name="vcli_ci" class="form-control" value="<?php echo $resultado[0]['cli_ci'] ?>" min="1" pattern="^[0-9]+">
                                             </div>
-                                        </div> 
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Nombres</label>
                                             <div class="col-lg-6">
@@ -69,13 +69,13 @@
                                             <div class="col-lg-4">
                                                 <input type="text" name="vcli_telefono" class="form-control" placeholder="Ingrese el telefono del cliente" value="<?php echo $resultado[0]['cli_telefono'] ?>">
                                             </div>
-                                        </div>  
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Dirección</label>
                                             <div class="col-lg-6">
                                                 <textarea class="form-control" name="vcli_direcc" placeholder="Ingrese la dirección del cliente" ><?php echo $resultado[0]['cli_direcc'] ?></textarea>
                                             </div>
-                                        </div>                                    
+                                        </div>
                                     </div>
                                     <div class="box-footer">
                                         <button type="reset" class="btn btn-default">
@@ -84,17 +84,17 @@
                                         <button type="submit" class="btn btn-warning pull-right">
                                             <i class="fa fa-edit"></i>Modificar
                                         </button>
-                                    </div>  
-									</form>   
+                                    </div>
+									</form>
 	                            </div>
-	                        </div>                        
+	                        </div>
 	                    </div>
 	                    <!--FIN FILA-->
 	                </div>
 	                <!--FIN CONTENEDOR-->
 	        </div>
-	                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
-        </div>                  
+	                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+        </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
         <script>
             $("#mensaje").delay(4000).slideUp(200, function(){
@@ -103,5 +103,3 @@
         </script>
     </body>
 </html>
-
-

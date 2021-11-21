@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -32,26 +32,26 @@
                                         <a href="empleado_index.php" class="btn btn-primary pull-rigth btn-sm" data-title="Volver" rel="tooltip">
                                             <i class="fa fa-arrow-left">    </i>
                                         </a>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <form action="empleado_control.php" method="post" accept-charset="utf-8" class="form-horizontal">
                                     <div class="box-body">
                                         <input type="hidden" name="vemp_cod" value="0" />
                                         <input type="hidden" name="accion" value="1" /><!--Bandera-->
-                                        <div class="form-group"> 
+                                        <div class="form-group">
                                             <label class="control-label col-lg-2">Cargo:</label>
                                             <div class="col-lg-6">
                                                 <!-- AGREGAR LISTA DESPLEGABLE CARGO -->
-                                                    
+
                                                         <div class="input-group col-lg-6">
-                                                            
+
                                                             <select class="form-control select2" name="vcar_cod" required="">
                                                                 <option value="" selected="">Seleccione un cargo</option>
                                                                 <?php $cargo = consultas::get_datos("select * from cargo");
                                                                 foreach ($cargo as $c) { ?>
-                                                                  <option value="<?php echo $c['car_cod'];?>"><?php echo $c['car_cod']."-".$c['car_descri'];?></option>   
+                                                                  <option value="<?php echo $c['car_cod'];?>"><?php echo $c['car_cod']."-".$c['car_descri'];?></option>
                                                                 <?php }?>
-                                                            </select>  
+                                                            </select>
                                                             <span class="input-group-btn btn-flat">
                                                                 <a class="btn btn-primary" data-title ="Agregar Cargo" rel="tooltip" data-placement="top"
                                                                    data-toggle="modal" data-target="#registrar">
@@ -61,7 +61,7 @@
                                                         </div>
                                                 <!-- FIN LISTA DESPLEGABLE CARGO -->
                                             </div>
-                                        </div> 
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Nombres</label>
                                             <div class="col-lg-6">
@@ -79,13 +79,13 @@
                                             <div class="col-lg-4">
                                                 <textarea type="text" name="vemp_direcc" class="form-control" placeholder="Ingrese la direccion del Empleado"></textarea>
                                             </div>
-                                        </div>  
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Telefono</label>
                                             <div class="col-lg-6">
-                                                <input type ="number" class="form-control" name="vemp_tel" placeholder="Ingrese el telefono del Empleado"/>
+                                                <input type ="number" min="1" pattern="^[0-9]+" class="form-control" name="vemp_tel" placeholder="Ingrese el telefono del Empleado"/>
                                             </div>
-                                        </div>                                    
+                                        </div>
                                     </div>
                                     <div class="box-footer">
                                         <button type="reset" class="btn btn-default">
@@ -94,16 +94,16 @@
                                         <button type="submit" class="btn btn-primary pull-right">
                                             <i class="fa fa-floppy-o"></i>Guardar
                                         </button>
-                                    </div>    
+                                    </div>
                                 </form>
-                                
+
                             </div>
                         </div>
                     </div>
                 </div>
-             
+
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
 <!-- MODAL REGISTRAR -->
                   <div class="modal fade" id="registrar" role="dialog">
                       <div class="modal-dialog">
@@ -127,15 +127,14 @@
                                       <button type="reset" data-dismiss="modal" class="btn btn-default pull-left">
                                           <i class="fa fa-remove"></i> Cerrar</button>
                                           <button type="submit" class="btn btn-primary pull-right">
-                                          <i class="fa fa-floppy-o"></i> Registrar</button>                                          
+                                          <i class="fa fa-floppy-o"></i> Registrar</button>
                                   </div>
                               </form>
                           </div>
                       </div>
                   </div>
-                  <!--FIN MODAL REGISTRAR-->                  
-        </div>                  
+                  <!--FIN MODAL REGISTRAR-->
+        </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
     </body>
 </html>
-

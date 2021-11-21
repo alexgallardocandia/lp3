@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -29,7 +29,7 @@
 	                            <?php if (!empty($_SESSION['mensaje'])) {?>
 	                                <div class="alert alert-danger" role="alert" id="mensaje">
 	                                    <span class="glyphicon glyphicon-exclamation-sign"></span>
-	                                <?php echo $_SESSION['mensaje']; 
+	                                <?php echo $_SESSION['mensaje'];
 	                                    $_SESSION['mensaje']='';?>
 	                                </div>
 	                            <?php } ?>
@@ -46,21 +46,21 @@
                                             <?php $resultado=consultas::get_datos("select * from v_empleado where emp_cod=".$_GET['vemp_cod']); ?>
                                         <input type="hidden" name="vemp_cod" value="<?php echo $resultado[0]['emp_cod']; ?>" />
                                         <input type="hidden" name="accion" value="2" /><!--Bandera-->
-                                        <div class="form-group"> 
+                                        <div class="form-group">
                                             <label class="control-label col-lg-2">Cargo:</label>
                                             <div class="col-lg-6">
                                                 <!-- AGREGAR LISTA DESPLEGABLE CARGO -->
-                                                    
+
                                                         <div class="input-group col-lg-6">
                                                             <?php $cargo = consultas::get_datos("select * from cargo order by car_cod");
-                                                                  
+
                                                             ?>
                                                             <select class="form-control" name="vcar_cod" required>
                                                                 <option value="<?php echo $resultado[0]['car_cod']; ?>"><?php echo $resultado[0]['car_cod']."-".$resultado[0]['car_descri']; ?></option>
                                                                 <?php foreach ($cargo as $c) { ?>
-                                                                  <option value="<?php echo $c['car_cod'];?>"><?php echo $c['car_cod']."-".$c['car_descri'];?></option>   
+                                                                  <option value="<?php echo $c['car_cod'];?>"><?php echo $c['car_cod']."-".$c['car_descri'];?></option>
                                                                 <?php }?>
-                                                            </select>  
+                                                            </select>
                                                             <span class="input-group-btn btn-flat">
                                                                 <a class="btn btn-primary" data-title ="Agregar Cargo" rel="tooltip" data-placement="top"
                                                                    data-toggle="modal" data-target="#registrar">
@@ -70,7 +70,7 @@
                                                         </div>
                                                 <!-- FIN LISTA DESPLEGABLE CARGO -->
                                             </div>
-                                        </div> 
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Nombres</label>
                                             <div class="col-lg-6">
@@ -88,13 +88,13 @@
                                             <div class="col-lg-4">
                                                 <textarea type="text" name="vemp_direcc" class="form-control" value=""><?php echo $resultado[0]['emp_direcc']; ?></textarea>
                                             </div>
-                                        </div>  
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Telefono</label>
                                             <div class="col-lg-6">
-                                                <input type ="number" class="form-control" name="vemp_tel" value="<?php echo $resultado[0]['emp_tel']; ?>"/>
+                                                <input type ="number" min="1" pattern="^[0-9]+" class="form-control" name="vemp_tel" value="<?php echo $resultado[0]['emp_tel']; ?>"/>
                                             </div>
-                                        </div>                                    
+                                        </div>
                                     </div>
                                     <div class="box-footer">
                                         <button type="reset" class="btn btn-default">
@@ -103,17 +103,17 @@
                                         <button type="submit" class="btn btn-warning pull-right">
                                             <i class="fa fa-edit"></i>Modificar
                                         </button>
-                                    </div>  
-									</form>   
+                                    </div>
+									</form>
 	                            </div>
-	                        </div>                        
+	                        </div>
 	                    </div>
 	                    <!--FIN FILA-->
 	                </div>
 	                <!--FIN CONTENEDOR-->
 	        </div>
-	                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
-        </div>                  
+	                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+        </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
         <script>
             $("#mensaje").delay(4000).slideUp(200, function(){
@@ -122,5 +122,3 @@
         </script>
     </body>
 </html>
-
-

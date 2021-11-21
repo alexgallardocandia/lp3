@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -29,7 +29,7 @@
                             <?php if (!empty($_SESSION['mensaje'])) {?>
                                 <div class="alert alert-danger" role="alert" id="mensaje">
                                     <span class="glyphicon g    lyphicon-exclamation-sign"></span>
-                                <?php echo $_SESSION['mensaje']; 
+                                <?php echo $_SESSION['mensaje'];
                                     $_SESSION['mensaje']='';?>
                                 </div>
                             <?php } ?>
@@ -62,7 +62,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <?php 
+                                            <?php
                                                 $valor='';
                                                 if (isset($_REQUEST['buscar'])) {
                                                     $valor=$_REQUEST['buscar'];
@@ -106,17 +106,17 @@
                                             <?php } ?>
                                         </div>
                                     </div>
-                                </div>    
+                                </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <!--FIN FILA-->
                 </div>
                 <!--FIN CONTENEDOR-->
-             
+
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
-<!--FORMULARIO MODAL AGREGAR-->                  
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+<!--FORMULARIO MODAL AGREGAR-->
             <div class="modal fade" id="registrar" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -137,7 +137,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">PORCENTAJE</label>
                                     <div class="col-sm-10">
-                                        <input type="number" name="vtipo_porcen" class="form-control" required />
+                                        <input type="number" min="0" pattern="^[0-9]+" name="vtipo_porcen" class="form-control" required />
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
                 </div>
             </div>
 <!--FIN FORMULARIO MODAL AGREGAR-->
-<!--FORMULARIO MODAL EDITAR-->                  
+<!--FORMULARIO MODAL EDITAR-->
             <div class="modal fade" id="editar" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -171,7 +171,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">PORCENTAJE</label>
                                     <div class="col-sm-10">
-                                        <input id="porcen" type="number" name="vtipo_porcen" class="form-control" required />
+                                        <input id="porcen" type="number" min="0" pattern="^[0-9]+" name="vtipo_porcen" class="form-control" required />
                                     </div>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@
                 </div>
             </div>
 <!--FIN FORMULARIO MODAL EDITAR-->
-<!--FORMULARIO MODAL BORRAR-->                  
+<!--FORMULARIO MODAL BORRAR-->
             <div class="modal fade" id="borrar" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -193,7 +193,7 @@
                             <h4 class="modal-title"><b>ATENCIÓN</b></h4>
                         </div>
                         <div class="modal-body">
-                            <div class="alert alert-warning" id="confirmacion"></div>    
+                            <div class="alert alert-warning" id="confirmacion"></div>
                         </div>
                         <div class="modal-footer">
                             <a id="si" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign"></span> Si</a>
@@ -205,7 +205,7 @@
             </div>
 <!--FIN FORMULARIO MODAL BORRAR-->
 
-        </div>                  
+        </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
         <script>
             $("#mensaje").delay(4000).slideUp(200, function(){
@@ -213,7 +213,7 @@
             });
         </script>
 <!--SCRIPTS MODALES-->
-    
+
         <script>
             $('.modal').on('shown.bs.modal', function() {
                 $(this).find('input:text:visible:first').focus();
@@ -232,8 +232,6 @@
                 $('#confirmacion').html('<span class="glyphicon glyphicon-warning-sign"></span> \n Desea borrar el impuesto <i><b>'+dat[1]+'</b></i>?');
             }
         </script>
-<!--FIN SCRIPTS MODALES-->        
+<!--FIN SCRIPTS MODALES-->
     </body>
 </html>
-
-

@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -29,7 +29,7 @@
                             <?php if (!empty($_SESSION['mensaje'])) {?>
                                 <div class="alert alert-danger" role="alert" id="mensaje">
                                     <span class="glyphicon glyphicon-exclamation-sign"></span>
-                                <?php echo $_SESSION['mensaje']; 
+                                <?php echo $_SESSION['mensaje'];
                                     $_SESSION['mensaje']='';?>
                                 </div>
                             <?php } ?>
@@ -60,7 +60,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <?php 
+                                            <?php
                                                 $valor='';
                                                 if (isset($_REQUEST['buscar'])) {
                                                     $valor=$_REQUEST['buscar'];
@@ -84,13 +84,15 @@
                                                                 <tr>
                                                                     <td data-title="Direccion"><?php echo $pagina['pag_direc']; ?></td>
                                                                     <td data-title="Nombre"><?php echo $pagina['pag_nombre'] ?></td>
-                                                                    <td data-title="Modulos"><?php echo $pagina['modulos']; ?></td>
+                                                                    <td data-title="Modulos"><?php echo $pagina['mod_cod']."-".$pagina['mod_nombre']; ?></td>
                                                                     <td data-title="Aciones" class="text-center">
                                                                         <a href="paginas_edit.php?vpag_cod=<?php echo $pagina['pag_cod'];?>" class="btn btn-warning btn-sm" role="button" data-title="Editar" rel="tooltip" data-placement="top">
                                                                             <span class="glyphicon glyphicon-edit"></span>
                                                                         </a>
                                                                         <!-- boton borrar -->
-                                                                        <a onclick="borrar(<?php echo "'".$pagina['pag_cod']."_".$pagina['pag_nombre']."'" ; ?>)" class="btn btn-danger btn-sm" role="button" data-title="Borrar" rel="tooltip" data-placement="top" data-toggle="modal" data-target="#borrar"><span class="glyphicon glyphicon-trash"></span>
+                                                                        <a onclick="borrar(<?php echo "'".$pagina['pag_cod']."_".$pagina['pag_nombre']."_".$pagina['mod_cod']."'" ; ?>)"
+                                                                           class="btn btn-danger btn-sm" role="button" data-title="Borrar"
+                                                                           rel="tooltip" data-placement="top" data-toggle="modal" data-target="#borrar"><span class="glyphicon glyphicon-trash"></span>
                                                                         </a>
                                                                     </td>
                                                                 </tr>
@@ -106,17 +108,17 @@
                                             <?php } ?>
                                         </div>
                                     </div>
-                                </div>    
+                                </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <!--FIN FILA-->
                 </div>
                 <!--FIN CONTENEDOR-->
-             
+
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS--> 
-<!--FORMULARIO MODAL BORRAR-->                  
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+<!--FORMULARIO MODAL BORRAR-->
             <div class="modal fade" id="borrar" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -125,7 +127,7 @@
                             <h4 class="modal-title"><b>ATENCIÓN</b></h4>
                         </div>
                         <div class="modal-body">
-                            <div class="alert alert-warning" id="confirmacion"></div>    
+                            <div class="alert alert-warning" id="confirmacion"></div>
                         </div>
                         <div class="modal-footer">
                             <a id="si" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign"></span> Si</a>
@@ -137,7 +139,7 @@
             </div>
 <!--FIN FORMULARIO MODAL BORRAR-->
 
-        </div>                  
+        </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
         <script>
             $("#mensaje").delay(4000).slideUp(200, function(){
@@ -147,11 +149,9 @@
             //Borrar
             function borrar(datos){
                 var dat = datos.split("_");
-                $('#si').attr('href', 'paginas_control.php?vpag_cod='+ dat[0]+'&vpag_nombre='+dat[1]+'&accion=3');
+                $('#si').attr('href', 'paginas_control.php?vpag_cod='+ dat[0]+'&vpag_nombre='+dat[1]+"&vmod_cod="+dat[2]+'&accion=3');
                 $('#confirmacion').html('<span class="glyphicon glyphicon-warning-sign"></span> \n Desea borrar el pagina <i><b>'+dat[1]+'</b></i>?');
             }
         </script>
     </body>
 </html>
-
-

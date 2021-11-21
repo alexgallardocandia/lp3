@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -29,7 +29,7 @@
 	                            <?php if (!empty($_SESSION['mensaje'])) {?>
 	                                <div class="alert alert-danger" role="alert" id="mensaje">
 	                                    <span class="glyphicon glyphicon-exclamation-sign"></span>
-	                                <?php echo $_SESSION['mensaje']; 
+	                                <?php echo $_SESSION['mensaje'];
 	                                    $_SESSION['mensaje']='';?>
 	                                </div>
 	                            <?php } ?>
@@ -46,13 +46,12 @@
 											<?php $resultado = consultas::get_datos("select * from proveedor where prv_cod=".$_GET['vprv_cod']) ?>
                                         <input type="hidden" name="vprv_cod" value="<?php echo $resultado[0]['prv_cod'] ?>" />
                                         <input type="hidden" name="accion" value="2" /><!--Bandera-->
-                                        <div class="form-group"> 
+                                        <div class="form-group">
                                             <label class="control-label col-lg-2">RUC</label>
                                             <div class="col-lg-4">
-                                                <input type="number" name="vprv_ruc" class="form-control" required="" autofocus="" min="
-                                                1" placeholder="Ingrese el RUC del proveedor" value="<?php echo $resultado[0]['prv_ruc'] ?>">
+                                                <input type="number" min="1" pattern="^[0-9]+" name="vprv_ruc" class="form-control" required="" autofocus=""  placeholder="Ingrese el RUC del proveedor" value="<?php echo $resultado[0]['prv_ruc'] ?>">
                                             </div>
-                                        </div> 
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Razon Social</label>
                                             <div class="col-lg-6">
@@ -62,31 +61,31 @@
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Dirección</label>
                                             <div class="col-lg-6">
-                                                <textarea class="form-control" name="vprv_direccion" placeholder="Ingrese la dirección del proveedor" ><?php echo $resultado[0]['prv_direccion'] ?></textarea>
+                                                <textarea class="form-control" name="vprv_direccion" placeholder="Ingrese la dirección del proveedor" required><?php echo $resultado[0]['prv_direccion'] ?></textarea>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                             <label class="control-label col-lg-2">Telefono</label>
                                             <div class="col-lg-4">
-                                                <input type="text" name="vprv_telefono" class="form-control" placeholder="Ingrese el telefono del proveedor" value="<?php echo $resultado[0]['prv_telefono'] ?>">
+                                                <input type="number" name="vprv_telefono" class="form-control" min="1" pattern="^[0-9]+" placeholder="Ingrese el telefono del proveedor" value="<?php echo $resultado[0]['prv_telefono'] ?>">
                                             </div>
-                                        </div>                                     
+                                        </div>
                                     </div>
                                     <div class="box-footer">
                                         <button type="submit" class="btn btn-warning pull-right">
                                             <i class="fa fa-edit"></i>Modificar
                                         </button>
-                                    </div>  
-									</form>   
+                                    </div>
+									</form>
 	                            </div>
-	                        </div>                        
+	                        </div>
 	                    </div>
 	                    <!--FIN FILA-->
 	                </div>
 	                <!--FIN CONTENEDOR-->
 	        </div>
-	                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
-        </div>                  
+	                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+        </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
         <script>
             $("#mensaje").delay(4000).slideUp(200, function(){
@@ -95,5 +94,3 @@
         </script>
     </body>
 </html>
-
-
