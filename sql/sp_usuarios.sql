@@ -50,6 +50,7 @@ begin
 			end if;
 		end if;
 	end if;
+	select * from v_ventas
 	--BORRADO
 	if ban = 3 then
 		perform * from empleado where emp_cod = vemp_cod;

@@ -14,7 +14,7 @@ if (!isset($_SESSION['usu_nick'])) {
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php        
+        <?php
         require 'menu/css_lte.ctp'; ?><!--ARCHIVOS CSS-->
 
     </head>
@@ -31,7 +31,7 @@ if (!isset($_SESSION['usu_nick'])) {
                             <?php if (!empty($_SESSION['mensaje'])) {?>
                                 <div class="alert alert-danger" role="alert" id="mensaje">
                                     <span class="glyphicon glyphicon-exclamation-sign"></span>
-                                <?php echo $_SESSION['mensaje']; 
+                                <?php echo $_SESSION['mensaje'];
                                     $_SESSION['mensaje']='';?>
                                 </div>
                             <?php } ?>
@@ -63,7 +63,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                                     </div>
                                                 </div>
                                             </form>
-                                            <?php 
+                                            <?php
                                                 $valor='';
                                                 if (isset($_REQUEST['buscar'])) {
                                                     $valor=$_REQUEST['buscar'];
@@ -89,7 +89,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                                             <?php foreach ($pedidos as $ped) {?>
                                                                 <tr>
                                                                     <td data-title="Codigo"><?php echo $ped['ped_cod']; ?></td>
-                                                                    <td data-title="Fecha"><?php echo $ped['ped_fecha']." ".$ped['mar_descri']; ?></td>
+                                                                    <td data-title="Fecha"><?php echo $ped['ped_fecha']; ?></td>
                                                                     <td data-title="Clientes"><?php echo $ped['cliente']; ?></td>
                                                                     <td data-title="Total"><?php echo number_format($ped['ped_total'], 0, ",", "." ); ?></td>
                                                                     <td data-title="Estado"><?php echo $ped['estado']; ?></td>
@@ -105,7 +105,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                                                                 <i class="fa fa-edit"></i>
                                                                             </a>
                                                                             <!--anular-->
-                                                                            <a onclick="anular(<?php echo "'".$ped['ped_cod']."_".$ped['cliente']."_".$ped['ped_fecha']."'"?>)" class="btn btn-danger btn-sm"  
+                                                                            <a onclick="anular(<?php echo "'".$ped['ped_cod']."_".$ped['cliente']."_".$ped['ped_fecha']."'"?>)" class="btn btn-danger btn-sm"
                                                                                data-title='Anular' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#anular">
                                                                                 <span class="glyphicon glyphicon-remove"></span>
                                                                             </a>
@@ -114,7 +114,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                                                             <a target="new" href="/lp3/pedventas_print.php?vped_cod=<?php echo $ped['ped_cod']; ?>" class="btn btn-primary btn-sm" role="button" target="print" data-title="Imprimir" rel="tooltip" data-placement="top">
                                                                                 <i class="fa fa-print"></i>
                                                                             </a>
-                                                                       
+
                                                                     </td>
                                                                 </tr>
                                                             <?php }; ?>
@@ -129,18 +129,18 @@ if (!isset($_SESSION['usu_nick'])) {
                                             <?php }; ?>
                                         </div>
                                     </div>
-                                </div>    
+                                </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <!--FIN FILA-->
                 </div>
             </div>
-            <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->      
-        </div>               
-                
+            <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+        </div>
+
                 <!--FIN CONTENEDOR-->
-<!--FORMULARIO MODAL BORRAR-->                  
+<!--FORMULARIO MODAL BORRAR-->
             <div class="modal fade" id="anular" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -149,7 +149,7 @@ if (!isset($_SESSION['usu_nick'])) {
                             <h4 class="modal-title"><b>ATENCIÓN</b></h4>
                         </div>
                         <div class="modal-body">
-                            <div class="alert alert-warning" id="confirmacion"></div>    
+                            <div class="alert alert-warning" id="confirmacion"></div>
                         </div>
                         <div class="modal-footer">
                             <a id="si" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign"></span> Si</a>
@@ -168,7 +168,7 @@ if (!isset($_SESSION['usu_nick'])) {
             });
         </script>
 <!--SCRIPTS MODALES-->
-    
+
         <script>
             function anular(datos){
                 var dat = datos.split('_');
@@ -181,5 +181,3 @@ if (!isset($_SESSION['usu_nick'])) {
 
     </body>
 </html>
-
-
