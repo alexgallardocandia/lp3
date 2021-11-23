@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -33,15 +33,15 @@
                                             <i class="fa fa-arrow-left"></i>
                                         </a>
                                     </div>
-                                </div> 
+                                </div>
                                 <form action="articulo_control.php" method="post" accept-charset="utf-8" class="form-horizontal">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <input type="hidden" name="accion" value="1"/>
-                                            <input type="hidden" name="vart_cod" value="0"/>                                            
+                                            <input type="hidden" name="vart_cod" value="0"/>
                                             <label class="control-label col-lg-2 col-md-2 col-sm-2"> Cod. Barra:</label>
                                             <div class="col-lg-4 col-md-5 col-sm-5">
-                                                <input placeholder="Codigo de Barra" type="number" min="1" pattern="^[0-9]+" name="vart_codbarra" class="form-control" required="" autofocus=""/>
+                                                <input placeholder="Codigo de Barra" type="text" name="vart_codbarra" class="form-control" required="" autofocus=""/>
                                             </div>
                                         </div>
                                         <!-- AGREGAR LISTA DESPLEGABLE MARCA -->
@@ -53,9 +53,9 @@
                                                     <select class="form-control select2" name="vmar_cod" required="">
                                                         <option value="">Seleccione una marca</option>
                                                         <?php foreach ($marcas as $marca) { ?>
-                                                          <option value="<?php echo $marca['mar_cod'];?>"><?php echo $marca['mar_descri'];?></option>   
+                                                          <option value="<?php echo $marca['mar_cod'];?>"><?php echo $marca['mar_descri'];?></option>
                                                         <?php }?>
-                                                    </select>  
+                                                    </select>
                                                     <span class="input-group-btn btn-flat">
                                                         <a class="btn btn-primary" data-title ="Agregar Marca " rel="tooltip" data-placement="top"
                                                            data-toggle="modal" data-target="#registrar">
@@ -71,19 +71,19 @@
                                           <div class="col-lg-6 col-md-6 col-sm-6">
                                               <input placeholder="Descripcion del artculo" type="text"  name="vart_descri" class="form-control" required=""/>
                                           </div>
-                                      </div>                                        
+                                      </div>
                                       <div class="form-group">
                                           <label class="control-label col-sm-2">Precio Costo:</label>
                                           <div class="col-lg-4 col-md-4 col-sm-4">
                                               <input placeholder="10000" type="number" min="1" pattern="^[0-9]+" name="vart_precioc" class="form-control"/>
                                           </div>
-                                      </div> 
+                                      </div>
                                       <div class="form-group">
                                           <label class="control-label col-sm-2">Precio Venta:</label>
                                           <div class="col-lg-4 col-md-4 col-sm-4">
                                               <input placeholder="20000" type="number" min="1" pattern="^[0-9]+" name="vart_preciov" class="form-control"/>
                                           </div>
-                                      </div> 
+                                      </div>
                                         <!-- AGREGAR LISTA DESPLEGABLE IMPUESTO -->
                                         <div class="form-group">
                                             <label class="control-label col-lg-2">Impuesto:</label>
@@ -93,9 +93,9 @@
                                                     <select class="form-control select2" name="vtipo_cod" required="">
                                                         <option value="">Seleccione un impuesto</option>
                                                         <?php foreach ($tipos as $tipo) { ?>
-                                                          <option value="<?php echo $tipo['tipo_cod'];?>"><?php echo $tipo['tipo_descri'];?></option>   
+                                                          <option value="<?php echo $tipo['tipo_cod'];?>"><?php echo $tipo['tipo_descri'];?></option>
                                                         <?php }?>
-                                                    </select>  
+                                                    </select>
                                                     <span class="input-group-btn btn-flat">
                                                         <a class="btn btn-primary" data-title ="Agregar Impuesto " rel="tooltip" data-placement="top"
                                                            data-toggle="modal" data-target="#registrar2">
@@ -105,12 +105,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- FIN LISTA DESPLEGABLE MARCA -->                                        
+                                        <!-- FIN LISTA DESPLEGABLE MARCA -->
                                     </div>
                                     <div class="box-footer">
-                                        <button type="reset" class="btn btn-default" data-title="Cancelar" rel="tooltip"> 
-                                            <i class="fa fa-remove"></i> Cancelar</button>                                        
-                                        <button type="submit" class="btn btn-primary pull-right" data-title="Guardar" rel="tooltip"> 
+                                        <button type="reset" class="btn btn-default" data-title="Cancelar" rel="tooltip">
+                                            <i class="fa fa-remove"></i> Cancelar</button>
+                                        <button type="submit" class="btn btn-primary pull-right" data-title="Guardar" rel="tooltip">
                                             <i class="fa fa-floppy-o"></i> Registrar</button>
                                     </div>
                                 </form>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
                   <!-- MODAL REGISTRAR -->
                   <div class="modal fade" id="registrar" role="dialog">
                       <div class="modal-dialog">
@@ -143,7 +143,7 @@
                                       <button type="reset" data-dismiss="modal" class="btn btn-default pull-left">
                                           <i class="fa fa-remove"></i> Cerrar</button>
                                           <button type="submit" class="btn btn-primary pull-right">
-                                          <i class="fa fa-floppy-o"></i> Registrar</button>                                          
+                                          <i class="fa fa-floppy-o"></i> Registrar</button>
                                   </div>
                               </form>
                           </div>
@@ -179,7 +179,7 @@
                                       <button type="reset" data-dismiss="modal" class="btn btn-default pull-left">
                                           <i class="fa fa-remove"></i> Cerrar</button>
                                           <button type="submit" class="btn btn-primary pull-right">
-                                          <i class="fa fa-floppy-o"></i> Registrar</button>                                          
+                                          <i class="fa fa-floppy-o"></i> Registrar</button>
                                   </div>
                               </form>
                           </div>

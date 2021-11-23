@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -29,7 +29,7 @@
                             <?php if (!empty($_SESSION['mensaje'])) {?>
                                 <div class="alert alert-danger" role="alert" id="mensaje">
                                     <span class="glyphicon glyphicon-exclamation-sign"></span>
-                                <?php echo $_SESSION['mensaje']; 
+                                <?php echo $_SESSION['mensaje'];
                                     $_SESSION['mensaje']='';?>
                                 </div>
                             <?php } ?>
@@ -53,9 +53,9 @@
                                                     <input type="hidden" name="vped_com" value="0"/>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-lg-4 col-md-6">
-                                                            
+                                                            <?php $fecha = consultas::get_datos("select current_date as fecha");?>
                                                             <label>Fecha:</label>
-                                                            <input type="date" name="vcom_fecha" class="form-control" required="" />
+                                                            <input type="date" name="vcom_fecha" max="<?php echo $fecha[0]['fecha'];?>" class="form-control" required="" />
                                                         </div>
                                                         <div class="col-xs-12 col-lg-4 col-md-6">
                                                             <label>Proveedores:</label>
@@ -85,7 +85,7 @@
                                                         </div>
                                                         <div class="col-xs-12 col-lg-4 col-md-6">
                                                             <label>Sucursal:</label>
-                                                            <input type="text" class="form-control" value="<?php echo $_SESSION['sucursal'] ?>" disabled/>                                       
+                                                            <input type="text" class="form-control" value="<?php echo $_SESSION['sucursal'] ?>" disabled/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -97,18 +97,18 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>    
+                                </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <!--FIN FILA-->
                 </div>
             </div>
-            <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->      
-        </div>               
-                
+            <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+        </div>
+
                 <!--FIN CONTENEDOR-->
-<!--FORMULARIO MODAL AGREGAR-->                  
+<!--FORMULARIO MODAL AGREGAR-->
             <div class="modal fade" id="registrar" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -136,7 +136,7 @@
                 </div>
             </div>
 <!--FIN FORMULARIO MODAL AGREGAR-->
-<!--FORMULARIO MODAL BORRAR-->                  
+<!--FORMULARIO MODAL BORRAR-->
             <div class="modal fade" id="borrar" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -145,7 +145,7 @@
                             <h4 class="modal-title"><b>ATENCIÓN</b></h4>
                         </div>
                         <div class="modal-body">
-                            <div class="alert alert-warning" id="confirmacion"></div>    
+                            <div class="alert alert-warning" id="confirmacion"></div>
                         </div>
                         <div class="modal-footer">
                             <a id="si" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign"></span> Si</a>
@@ -164,7 +164,7 @@
             });
         </script>
 <!--SCRIPTS MODALES-->
-    
+
         <script>
             $('.modal').on('shown.bs.modal', function() {
                 $(this).find('input:text:visible:first').focus();
@@ -180,5 +180,3 @@
 
     </body>
 </html>
-
-

@@ -14,7 +14,7 @@ if (!isset($_SESSION['usu_nick'])) {
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php        
+        <?php
         require 'menu/css_lte.ctp'; ?><!--ARCHIVOS CSS-->
 
     </head>
@@ -31,7 +31,7 @@ if (!isset($_SESSION['usu_nick'])) {
                             <?php if (!empty($_SESSION['mensaje'])) {?>
                                 <div class="alert alert-danger" role="alert" id="mensaje">
                                     <span class="glyphicon glyphicon-exclamation-sign"></span>
-                                <?php echo $_SESSION['mensaje']; 
+                                <?php echo $_SESSION['mensaje'];
                                     $_SESSION['mensaje']='';?>
                                 </div>
                             <?php } ?>
@@ -49,10 +49,10 @@ if (!isset($_SESSION['usu_nick'])) {
                                 <div class="box-body no-padding">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            
-                                            <?php 
+
+                                            <?php
                                                 $pedidos = consultas::get_datos("select * from v_pedido_cabcompra where ped_com=".$_REQUEST['vped_com']);
-                                                
+
                                             if (!empty($pedidos)) {?>
                                                 <div class="table-responsive">
                                                     <table class="table col-lg-12 col-md-12 col-sm-12 col-xs-12 tablo-bordered table-striped table-condensed">
@@ -69,7 +69,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                                             <?php foreach ($pedidos as $ped) {?>
                                                                 <tr>
                                                                     <td data-title="Codigo"><?php echo $ped['ped_com']; ?></td>
-                                                                    <td data-title="Fecha"><?php echo $ped['com_fecha']." ".$ped['mar_descri']; ?></td>
+                                                                    <td data-title="Fecha"><?php echo $ped['com_fecha']; ?></td>
                                                                     <td data-title="Proveedor"><?php echo $ped['prv_razonsocial']; ?></td>
                                                                     <td data-title="Total"><?php echo number_format($ped['ped_total'], 0, ",", "." ); ?></td>
                                                                     <td data-title="Estado"><?php echo $ped['estado']; ?></td>
@@ -90,7 +90,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                     <!--DETALLE PEDIDO-->
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            
+
                                                     <div class="box-header">
                                                         <i class="fa fa-list"></i>
                                                         <h3 class="box-title">Detalle Items</h3>
@@ -127,7 +127,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                                                             <a onclick="borrar(<?php echo "'".$d['ped_com']."_".$d['art_cod']."_".$d['dep_cod']."_".$d['art_descri']." ".$d['mar_descri']."'"?>)" class="btn btn-danger btn-sm" role='button'
                                                                                data-title='Borrar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#borrar">
                                                                                 <span class="glyphicon glyphicon-trash"></span>
-                                                                            </a>                                                                  
+                                                                            </a>
                                                                         </td>
                                                                     </tr>
                                                                 <?php } ?>
@@ -137,7 +137,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                         <?php }else{ ?>
                                             <div class="alert alert-info flat">
                                                 <i class="fa fa-info-circle"></i> En el pedido aun no se cargaron detalles...
-                                            </div>   
+                                            </div>
                                         <?php } ?>
                                         </div>
                                     </div>
@@ -157,9 +157,9 @@ if (!isset($_SESSION['usu_nick'])) {
                                                                 <select class="form-control select2" name="vdep_cod" required="">
                                                                     <option value="">Seleccione un deposito</option>
                                                                     <?php foreach ($depositos as $deposito) { ?>
-                                                                      <option value="<?php echo $deposito['dep_cod'];?>"><?php echo $deposito['dep_descri'];?></option>   
+                                                                      <option value="<?php echo $deposito['dep_cod'];?>"><?php echo $deposito['dep_descri'];?></option>
                                                                     <?php }?>
-                                                                </select>  
+                                                                </select>
                                                         </div>
                                                     </div>
                                                     <!--/DEPOSITO-->
@@ -171,12 +171,12 @@ if (!isset($_SESSION['usu_nick'])) {
                                                             <select class="form-control select2" name="vart_cod" required="" id="articulo" onchange="precio()">
                                                                     <option value="">Seleccione un articulo</option>
                                                                     <?php foreach ($articulos as $articulo) { ?>
-                                                                      <option value="<?php echo $articulo['art_cod']."_".$articulo['art_preciov'];?>"><?php echo $articulo['art_descri']." ".$articulo['mar_descri'];?></option>   
+                                                                      <option value="<?php echo $articulo['art_cod']."_".$articulo['art_preciov'];?>"><?php echo $articulo['art_descri']." ".$articulo['mar_descri'];?></option>
                                                                     <?php }?>
-                                                                </select>  
+                                                                </select>
                                                         </div>
                                                     </div>
-                                                    <!--/ARTICULO--> 
+                                                    <!--/ARTICULO-->
                                                     <div class="form-group">
                                                         <label class="control-label col-lg-2">Cantidad:</label>
                                                         <div class="col-lg-3 col-md-4 col-sm-4">
@@ -188,7 +188,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                                         <div class="col-lg-3 col-md-4 col-sm-4">
                                                             <input type="number" class="form-control" name="vped_precio" min="1" required="" id="vprecio"/>
                                                         </div>
-                                                    </div>                                                    
+                                                    </div>
                                                 </div>
                                                 <div class="box-footer">
                                                     <button type="submit" class="btn btn-primary pull-right">
@@ -199,27 +199,27 @@ if (!isset($_SESSION['usu_nick'])) {
                                         </div>
                                     </div>
                                     <!--FIN FORMULARIO AGG-->
-                                </div>    
+                                </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <!--FIN FILA-->
                 </div>
             </div>
-            <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->      
-        </div>               
-                
+            <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+        </div>
+
                 <!--FIN CONTENEDOR-->
 <!--FORMULARIO MODAL EDITAR-->
             <div class="modal fade" id="editar" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content" id="detalles">
-                        
+
                     </div>
                 </div>
             </div>
-<!--FIN FORMULARIO MODAL EDITAR-->                
-<!--FORMULARIO MODAL BORRAR-->                  
+<!--FIN FORMULARIO MODAL EDITAR-->
+<!--FORMULARIO MODAL BORRAR-->
             <div class="modal fade" id="borrar" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -228,7 +228,7 @@ if (!isset($_SESSION['usu_nick'])) {
                             <h4 class="modal-title"><b>ATENCIÓN</b></h4>
                         </div>
                         <div class="modal-body">
-                            <div class="alert alert-warning" id="confirmacion"></div>    
+                            <div class="alert alert-warning" id="confirmacion"></div>
                         </div>
                         <div class="modal-footer">
                             <a id="si" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign"></span> Si</a>
@@ -247,7 +247,7 @@ if (!isset($_SESSION['usu_nick'])) {
             });
         </script>
 <!--SCRIPTS MODALES-->
-    
+
         <script>
             function precio(){
             var valor = $('#articulo').val().split('_');
@@ -270,12 +270,10 @@ if (!isset($_SESSION['usu_nick'])) {
                 var dat = datos.split('_');
                 $('#si').attr('href','pedcompras_dcontrol.php?vped_com='+dat[0]+'&vart_cod='+dat[1]+'&vdep_cod='+dat[2]+'&accion=3');
                 $('#confirmacion').html('<span class="glyphicon glyphicon-warning-sign"></span> Desea quitar el articulo \n\
-        <strong>'+dat[3]+'</strong> ?');            
+        <strong>'+dat[3]+'</strong> ?');
             }
         </script>
 <!--FIN SCRIPTS MODALES-->
 
     </body>
 </html>
-
-

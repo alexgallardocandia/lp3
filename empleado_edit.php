@@ -97,9 +97,9 @@
                                         </div>
                                     </div>
                                     <div class="box-footer">
-                                        <button type="reset" class="btn btn-default">
+                                        <!--<button type="reset" class="btn btn-default">
                                             <i class="fa fa-remove"></i>Cancelar
-                                        </button>
+                                        </button>-->
                                         <button type="submit" class="btn btn-warning pull-right">
                                             <i class="fa fa-edit"></i>Modificar
                                         </button>

@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -33,7 +33,7 @@
                                     $_SESSION['mensaje'] = '';
                                 ?>
                             </div>
-                            <?php } 
+                            <?php }
                                 $compras = consultas::get_datos("select * from v_compras where com_cod=".$_REQUEST['vcom_cod']);
                             ?>
                             <div class="box box-primary">
@@ -50,8 +50,8 @@
                                 </div>
                                 <div class="box-body">
                                     <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                          
-                                            <?php 
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <?php
                                             //consulta a la tabla marca
                                             //var_dump($marcas);
                                             if (!empty($compras)) { ?>
@@ -73,8 +73,8 @@
                                                             <td data-title='N° Compra'><?php echo $com['com_cod'];?></td>
                                                             <td data-title='Fecha'><?php echo $com['com_fecha'];?></td>
                                                             <td data-title='Proveedor'><?php echo $com['prv_razonsocial'];?></td>
-                                                            <td data-title='Condición'><?php echo $com['tipo_compra'];?></td>                                                            
-                                                            <td data-title='Total'><?php echo number_format($d['com_total'],0,",",".");?></td>
+                                                            <td data-title='Condición'><?php echo $com['tipo_compra'];?></td>
+                                                            <td data-title='Total'><?php echo number_format($com['com_total'],0,",",".");?></td>
                                                             <td data-title='Estado'><?php echo $com['com_estado'];?></td>
                                                         </tr>
                                                         <?php } ?>
@@ -83,7 +83,7 @@
                                             </div>
                                             <?php }else { ?>
                                             <div class="alert alert-info flat">
-                                                <span class="glyphicon glyphicon-info-sign"></span> 
+                                                <span class="glyphicon glyphicon-info-sign"></span>
                                                 No se encontraron registros coincidentes...
                                             </div>
                                             <?php }
@@ -94,13 +94,13 @@
                                     <!-- INCICIO ITEMS PEDIDOS-->
                                    <?php $pedidosdet = consultas::get_datos("select * from v_detalle_pedcompra where ped_com=".$compras[0]['ped_cod']
                                     ." and art_cod not in (select art_cod from detalle_compra where com_cod=".$compras[0]['com_cod'].")");
-                                    
-                                    if (!empty($pedidosdet)) { ?>                                    
+
+                                    if (!empty($pedidosdet)) { ?>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="box-header">
                                                 <i class="fa fa-list"></i>
-                                                <h3 class="box-title">Detalle Items del Pedido N° <?php echo $compras[0]['ped_com'];?></h3>
+                                                <h3 class="box-title">Detalle Items del Pedido N° <?php echo $compras[0]['ped_cod'];?></h3>
                                             </div>
                                             <div class="table-responsive">
                                                 <table class="table table-condensed table-striped table-hover">
@@ -130,17 +130,17 @@
                                                                 <a onclick="add(<?php echo $peddet['ped_com'];?>,<?php echo $compras[0]['com_cod'];?>,<?php echo $peddet['art_cod'];?>,<?php echo $peddet['dep_cod'];?>)" class="btn btn-success btn-sm" role='button'
                                                                    data-title='Agregar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#editar">
                                                                     <span class="glyphicon glyphicon-plus"></span>
-                                                                </a>                                                                                                
+                                                                </a>
                                                             </td>
-                                                        </tr>         
+                                                        </tr>
                                                        <?php }?>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
-                                    <?php } ?>                                    
-                                    <!-- FIN ITEMS PEDIDOS-->                                    
+                                    <?php } ?>
+                                    <!-- FIN ITEMS PEDIDOS-->
                                     <!-- INCICIO DETALLES-->
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -183,9 +183,9 @@
                                                                 <a onclick="borrar(<?php echo "'".$det['com_cod']."_".$det['art_cod']."_".$det['dep_cod']."_".$det['art_descri']." ".$det['mar_descri']."'"?>)" class="btn btn-danger btn-sm" role='button'
                                                                    data-title='Borrar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#borrar">
                                                                     <span class="glyphicon glyphicon-trash"></span>
-                                                                </a>                                                                  
+                                                                </a>
                                                             </td>
-                                                        </tr>         
+                                                        </tr>
                                                        <?php }?>
                                                     </tbody>
                                                 </table>
@@ -193,7 +193,7 @@
                                             <?php }else{ ?>
                                             <div class="alert alert-info flat">
                                                 <i class="fa fa-info-circle"></i> La compra aún no tiene detalles cargados...
-                                            </div>       
+                                            </div>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -213,9 +213,9 @@
                                                                 <select class="form-control select2" name="vdep_cod" required="">
                                                                     <option value="">Seleccione un deposito</option>
                                                                     <?php foreach ($depositos as $deposito) { ?>
-                                                                      <option value="<?php echo $deposito['dep_cod'];?>"><?php echo $deposito['dep_descri'];?></option>   
+                                                                      <option value="<?php echo $deposito['dep_cod'];?>"><?php echo $deposito['dep_descri'];?></option>
                                                                     <?php }?>
-                                                                </select>  
+                                                                </select>
                                                         </div>
                                                     </div>
                                                     <!-- FIN LISTA DESPLEGABLE DEPOSITO -->
@@ -227,12 +227,12 @@
                                                             <select class="form-control select2" name="vart_cod" required="" id="articulo" onchange="precio()">
                                                                     <option value="">Seleccione un articulo</option>
                                                                     <?php foreach ($articulos as $articulo) { ?>
-                                                                      <option value="<?php echo $articulo['art_cod']."_".$articulo['art_preciov'];?>"><?php echo $articulo['art_descri']." ".$articulo['mar_descri'];?></option>   
+                                                                      <option value="<?php echo $articulo['art_cod']."_".$articulo['art_preciov'];?>"><?php echo $articulo['art_descri']." ".$articulo['mar_descri'];?></option>
                                                                     <?php }?>
-                                                                </select>  
+                                                                </select>
                                                         </div>
                                                     </div>
-                                                    <!-- FIN LISTA DESPLEGABLE MARCA --> 
+                                                    <!-- FIN LISTA DESPLEGABLE MARCA -->
                                                     <div class="form-group">
                                                         <label class="control-label col-lg-2">Cantidad:</label>
                                                         <div class="col-lg-3 col-md-4 col-sm-4">
@@ -244,7 +244,7 @@
                                                         <div class="col-lg-3 col-md-4 col-sm-4">
                                                             <input type="number" class="form-control" name="vcom_precio" min="1" required="" id="vprecio"/>
                                                         </div>
-                                                    </div>                                                    
+                                                    </div>
                                                 </div>
                                                 <div class="box-footer">
                                                     <button type="submit" class="btn btn-primary pull-right">
@@ -257,18 +257,18 @@
                                     <!-- FIN FORMULARIO AGREGAR-->
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <!-- FIN FILA 1 -->
-                </div>   
+                </div>
                 <!-- FIN CONTENEDOR PRINCIPAL -->
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS--> 
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
                   <!-- MODAL EDITAR DETALLE-->
                   <div class="modal fade" id="editar" role="dialog">
                       <div class="modal-dialog">
                           <div class="modal-content" id="detalles">
-                              
+
                           </div>
                       </div>
                   </div>
@@ -288,7 +288,7 @@
                                       <a  id="si" class="btn btn-primary">
                                           <i class="fa fa-check"></i> Si</a>
                                           <button type="button" class="btn btn-default" data-dismiss="modal">
-                                      <i class="fa fa-remove"></i> No</button>                                          
+                                      <i class="fa fa-remove"></i> No</button>
                                   </div>
                           </div>
                       </div>
@@ -309,13 +309,13 @@
                                       <a  id="sic" class="btn btn-primary">
                                           <i class="fa fa-check"></i> Si</a>
                                           <button type="button" class="btn btn-default" data-dismiss="modal">
-                                      <i class="fa fa-remove"></i> No</button>                                          
+                                      <i class="fa fa-remove"></i> No</button>
                                   </div>
                           </div>
                       </div>
                   </div>
-                  <!-- FIN MODAL CONFIRMAR --> 
-            </div>                  
+                  <!-- FIN MODAL CONFIRMAR -->
+            </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
         <script>
             $("#mensaje").delay(4000).slideUp(200,function(){
@@ -345,7 +345,7 @@
             var dat = datos.split('_');
             $('#si').attr('href','compras_dcontrol.php?vcom_cod='+dat[0]+'&vart_cod='+dat[1]+'&vdep_cod='+dat[2]+'&accion=3');
             $('#confirmacion').html('<span class="glyphicon glyphicon-warning-sign"></span> Desea quitar el articulo \n\
-    <strong>'+dat[3]+'</strong> ?');            
+    <strong>'+dat[3]+'</strong> ?');
         };
             function confirmar(datos){
                 var dat = datos.split('_');
@@ -365,9 +365,7 @@
                     $("#detalles").html(data)
                 }
             });
-        };            
-        </script>        
+        };
+        </script>
     </body>
 </html>
-
-
