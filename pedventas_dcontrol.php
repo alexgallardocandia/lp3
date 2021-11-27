@@ -14,8 +14,8 @@ $resultado = consultas::get_datos($sql);
 //echo $resultado[0]['resul'];
 if ($resultado[0]['resul']!=null) {
     $_SESSION['mensaje'] = $resultado[0]['resul'];
-    header("location:pedventas_det.php?vped_cod=".$_REQUEST['vped_cod']);    
+    header("location:pedventas_det.php?vped_cod=".$_REQUEST['vped_cod']);
 }else{
     $_SESSION['mensaje'] = "Error:".$sql;
-    header("location:pedventas_det.php?vped_cod=".$_REQUEST['vped_cod']);    
+    header("location:pedventas_det.php?vped_cod=".$_REQUEST['vped_cod']);
 }

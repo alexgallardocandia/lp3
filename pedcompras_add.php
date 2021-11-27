@@ -55,7 +55,7 @@
                                                         <div class="col-xs-12 col-lg-4 col-md-6">
                                                             <?php $fecha = consultas::get_datos("select current_date as fecha");?>
                                                             <label>Fecha:</label>
-                                                            <input type="date" name="vcom_fecha" max="<?php echo $fecha[0]['fecha'];?>" class="form-control" required="" />
+                                                            <input type="date" name="vcom_fecha" value="<?php echo $fecha[0]['fecha'];?>" class="form-control" disabled />
                                                         </div>
                                                         <div class="col-xs-12 col-lg-4 col-md-6">
                                                             <label>Proveedores:</label>

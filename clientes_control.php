@@ -1,4 +1,4 @@
-<?php 
+<?php
 	require 'clases/conexion.php';
 
 	session_start();
@@ -9,8 +9,9 @@
 	//echo $resultado[0]['resul'];
 
 	if ($resultado[0]['resul']!= null) {
-		$_SESSION['mensaje']=$resultado[0]['resul'];
-		header("location:clientes_index.php");
+		$loc = explode("*",$resultado[0]['resul']);
+		$_SESSION['mensaje']=$loc[0];
+		header("location:".$loc[1]);
 	}else{
 		$_SESSION['mensaje']="Error".$sql;
 		header("location:clientes_index.php");

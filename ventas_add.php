@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -24,6 +24,14 @@
                 <div class="content">
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                          <?php if (!empty($_SESSION['mensaje'])) { ?>
+                          <div class="alert alert-danger" id="mensaje">
+                              <span class="glyphicon glyphicon-info-sign"></span>
+                              <?php echo $_SESSION['mensaje'];
+                                  $_SESSION['mensaje'] = '';
+                              ?>
+                          </div>
+                          <?php } ?>
                             <div class="box box-primary">
                                 <div class="box-header">
                                     <i class="fa fa-plus"></i>
@@ -33,15 +41,15 @@
                                             <i class="fa fa-arrow-left"></i> VOLVER
                                         </a>
                                     </div>
-                                </div> 
+                                </div>
                                 <form action="ventas_control.php" method="post" accept-charset="utf-8" class="form-horizontal">
                                     <input type="hidden" name="accion" value="1">
                                     <input type="hidden" name="vven_cod" value="0">
                                     <div class="box-body">
-                                        <div class="form-group">                                            
+                                        <div class="form-group">
                                             <?php $fecha = consultas::get_datos("select current_date as fecha");?>
                                             <label class="control-label col-lg-2 col-md-2 col-sm-2"> Fecha:</label>
-                                            <div class="col-lg-4 col-md-4 col-sm-5"> 
+                                            <div class="col-lg-4 col-md-4 col-sm-5">
                                                 <input type="date" name="vven_fecha" class="form-control" readonly="" value="<?php echo $fecha[0]['fecha'];?>"/>
                                             </div>
                                             <label class="control-label col-lg-2 col-md-2">Condición:</label>
@@ -49,9 +57,9 @@
                                                 <select class="form-control select2" name="vtipo_venta" required="" id="tipo_venta" onchange="tipoventa()">
                                                     <option value="CONTADO">CONTADO</option>
                                                     <option value="CREDITO">CREDITO</option>
-                                                </select>    
-                                            </div>                                            
-                                        </div>  
+                                                </select>
+                                            </div>
+                                        </div>
                                         <!-- AGREGAR LISTA DESPLEGABLE CLIENTES -->
                                         <div class="form-group">
                                             <label class="control-label col-lg-2 col-md-2">Clientes:</label>
@@ -61,9 +69,9 @@
                                                     <select class="form-control select2" name="vcli_cod" required="" id="cliente" onchange="pedidos()">
                                                         <option value="">Seleccione un cliente</option>
                                                         <?php foreach ($clientes as $cliente) { ?>
-                                                          <option value="<?php echo $cliente['cli_cod'];?>"><?php echo "(".$cliente['cli_ci'].") ".$cliente['cli_nombre']." ".$cliente['cli_apellido'];?></option>   
+                                                          <option value="<?php echo $cliente['cli_cod'];?>"><?php echo "(".$cliente['cli_ci'].") ".$cliente['cli_nombre']." ".$cliente['cli_apellido'];?></option>
                                                         <?php }?>
-                                                    </select>  
+                                                    </select>
                                                     <span class="input-group-btn btn-flat">
                                                         <a class="btn btn-primary" data-title ="Agregar Cliente " rel="tooltip" data-placement="top"
                                                            data-toggle="modal" data-target="#registrar">
@@ -74,32 +82,32 @@
                                             </div>
                                             <div id="det_pedidos"></div>
                                         </div>
-                                        <!-- FIN LISTA DESPLEGABLE MARCA -->  
-                                        <div class="form-group tipo" style="display: none;">                                            
+                                        <!-- FIN LISTA DESPLEGABLE MARCA -->
+                                        <div class="form-group tipo" style="display: none;">
                                             <label class="control-label col-lg-2 col-md-2 col-sm-2"> Cant. Cuotas:</label>
-                                            <div class="col-lg-4 col-md-4 col-sm-5"> 
+                                            <div class="col-lg-4 col-md-4 col-sm-5">
                                                 <input type="number" name="vcan_cuota" class="form-control" min="1" value="1" required="" id="cuotas"/>
                                             </div>
                                             <label class="control-label col-lg-2 col-md-2">Intervalo:</label>
                                             <div class="col-lg-4 col-md-4 col-sm-5">
                                                 <input type="number" name="vven_plazo" class="form-control" min="0" max="36" value="0" required="" id="intervalo"/>
-                                            </div>                                            
-                                        </div>   
-                                        <div class="form-group">                                            
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label class="control-label col-lg-2 col-md-2 col-sm-2"> Empleado:</label>
-                                            <div class="col-lg-4 col-md-4 col-sm-5"> 
+                                            <div class="col-lg-4 col-md-4 col-sm-5">
                                                 <input type="text" class="form-control" value="<?php echo $_SESSION['nombres'];?>" readonly=""/>
                                             </div>
                                             <label class="control-label col-lg-2 col-md-2">Sucursal:</label>
                                             <div class="col-lg-4 col-md-4 col-sm-5">
                                                 <input type="text" class="form-control" value="<?php echo $_SESSION['sucursal'];?>" readonly=""/>
-                                            </div>                                            
-                                        </div>                                           
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="box-footer">
-                                        <button type="reset" class="btn btn-default" data-title="Cancelar" rel="tooltip"> 
-                                            <i class="fa fa-remove"></i> Cancelar</button>                                        
-                                        <button type="submit" class="btn btn-primary pull-right" data-title="Guardar" rel="tooltip"> 
+                                        <button type="reset" class="btn btn-default" data-title="Cancelar" rel="tooltip">
+                                            <i class="fa fa-remove"></i> Cancelar</button>
+                                        <button type="submit" class="btn btn-primary pull-right" data-title="Guardar" rel="tooltip">
                                             <i class="fa fa-floppy-o"></i> Registrar</button>
                                     </div>
                                 </form>
@@ -108,9 +116,70 @@
                     </div>
                 </div>
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
-            </div>                  
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+            </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
+        <!--FORMULARIO MODAL AGREGAR-->
+                    <div class="modal fade" id="registrar" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" arial-label="Close">x</button>
+                                    <h4 class="modal-title"><b>AGREGAR CLIENTE</b></h4>
+                                </div>
+                                <form action="clientes_control.php" method="post" accept-charset="utf-8" class="form-horizontal">
+                                    <div class="box-body">
+                                        <input type="hidden" name="vcli_cod" value="0" />
+                                        <input type="hidden" name="accion" value="5" /><!--Bandera-->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">C.I. N°</label>
+                                            <div class="col-lg-4">
+                                                <input type="number"  name="vcli_ci" class="form-control" required="" autofocus="" min="1" pattern="^[0-9]+" placeholder="Ingrese el CI del cliente">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Nombres</label>
+                                            <div class="col-lg-6">
+                                                <input type="text" name="vcli_nombre" class="form-control" required="" placeholder="Ingrese el Nombre del cliente"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Apellidos</label>
+                                            <div class="col-lg-6">
+                                                <input type="text" name="vcli_apellido" class="form-control" required="" placeholder="Ingrese el apellido del cliente"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Telefono</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="vcli_telefono" class="form-control" required placeholder="Ingrese el telefono del cliente">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Dirección</label>
+                                            <div class="col-lg-6">
+                                                <textarea class="form-control" name="vcli_direcc" required placeholder="Ingrese la dirección del cliente"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-footer">
+                                        <button type="reset" data-dismiss="modal" class="btn btn-default">
+                                            <i class="fa fa-remove"></i>Cerrar
+                                        </button>
+                                        <button type="submit" class="btn btn-primary pull-right">
+                                            <i class="fa fa-floppy-o"></i>Guardar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+        <!--FIN FORMULARIO MODAL AGREGAR-->
+        <script>
+            $("#mensaje").delay(4000).slideUp(200,function(){
+                $(this).alert('close');
+            });
+        </script>
         <script>
             function tipoventa(){
 //                alert($("#tipo_venta").val())
@@ -118,15 +187,15 @@
                       $('.tipo').hide();
                        $("#cuotas").val(1);
                       $("#cuotas").prop('readonly',true);
-                      $("#intervalo").val(0);                      
-                      $("#intervalo").prop('readonly',true);                                              
+                      $("#intervalo").val(0);
+                      $("#intervalo").prop('readonly',true);
                   }else{
                       $('.tipo').show();
                       $("#cuotas").prop('readonly',false);
-                      $("#intervalo").prop('readonly',false);  
+                      $("#intervalo").prop('readonly',false);
                   }
             };
-            /*FUNCION PARA OBTENER LOS PEDIDOS 
+            /*FUNCION PARA OBTENER LOS PEDIDOS
              * DEL CLIENTE SELECCCIONADO*/
             function pedidos(){
                 $.ajax({
@@ -138,11 +207,9 @@
                 },
                 success:function(data){
                     $("#det_pedidos").html(data)
-                }                   
+                }
                 });
             }
         </script>
     </body>
 </html>
-
-

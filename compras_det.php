@@ -145,7 +145,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <?php /*$detalles = consultas::get_datos("select * from v_detalle_compra where com_cod=".$compras[0]['com_cod']);*/
-                                            $detalles = consultas::get_datos("select * from v_detalle_compra");
+                                            $detalles = consultas::get_datos("select * from v_detalle_compra where com_cod=".$compras[0]['com_cod']);
                                                  if (!empty($detalles)) { ?>
                                             <div class="box-header">
                                                 <i class="fa fa-list"></i>

@@ -123,7 +123,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                                                                data-title='Editar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#editar">
                                                                                 <span class="glyphicon glyphicon-edit"></span>
                                                                             </a>
-                                                                            <a onclick="borrar(<?php echo "'".$d['ped_cod']."_".$d['art_cod']."_".$d['dep_cod']."_".$d['art_descri']." ".$d['mar_descri']."'"?>)" class="btn btn-danger btn-sm" role='button'
+                                                                            <a onclick="borrar(<?php echo "'".$d['ped_cod']."_".$d['art_cod']."_".$d['dep_cod']."'"?>)" class="btn btn-danger btn-sm" role='button'
                                                                                data-title='Borrar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#borrar">
                                                                                 <span class="glyphicon glyphicon-trash"></span>
                                                                             </a>
@@ -269,7 +269,7 @@ if (!isset($_SESSION['usu_nick'])) {
                 var dat = datos.split('_');
                 $('#si').attr('href','pedventas_dcontrol.php?vped_cod='+dat[0]+'&vart_cod='+dat[1]+'&vdep_cod='+dat[2]+'&accion=3');
                 $('#confirmacion').html('<span class="glyphicon glyphicon-warning-sign"></span> Desea quitar el articulo \n\
-        <strong>'+dat[3]+'</strong> ?');
+        <strong>'+dat[1]+'</strong> ?');
             }
         </script>
 <!--FIN SCRIPTS MODALES-->

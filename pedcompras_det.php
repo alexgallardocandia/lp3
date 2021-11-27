@@ -118,15 +118,13 @@ if (!isset($_SESSION['usu_nick'])) {
                                                                         <td data-title="Cantidad"><?php echo $d['ped_cant'];?></td>
                                                                         <td data-title="Precio"><?php echo number_format($d['ped_precio'],0,",",".");?></td>
                                                                         <td data-title="Impuesto"><?php echo $d['tipo_descri'];?></td>
-                                                                        <td data-title="Precio"><?php echo number_format($d['subtotal'],0,",",".");?></td>
+                                                                        <td data-title="Subtotal"><?php echo number_format($d['subtotal'],0,",",".");?></td>
                                                                         <td class="text-center">
                                                                             <a onclick="editar(<?php echo $d['ped_com'];?>,<?php echo $d['art_cod'];?>,<?php echo $d['dep_cod'];?>)" class="btn btn-warning btn-sm" role='button'
                                                                                data-title='Editar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#editar">
                                                                                 <span class="glyphicon glyphicon-edit"></span>
                                                                             </a>
-                                                                            <a onclick="borrar(<?php echo "'".$d['ped_com']."_".$d['art_cod']."_".$d['dep_cod']."_".$d['art_descri']." ".$d['mar_descri']."'"?>)" class="btn btn-danger btn-sm" role='button'
-                                                                               data-title='Borrar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#borrar">
-                                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                                            <a onclick="borrar(<?php echo "'".$d['ped_com']."_".$d['art_cod']."_".$d['dep_cod']."'" ; ?>)" class="btn btn-danger btn-sm" role="button" data-title="Borrar" rel="tooltip" data-placement="top" data-toggle="modal" data-target="#borrar"><span class="glyphicon glyphicon-trash"></span>
                                                                             </a>
                                                                         </td>
                                                                     </tr>
@@ -171,7 +169,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                                             <select class="form-control select2" name="vart_cod" required="" id="articulo" onchange="precio()">
                                                                     <option value="">Seleccione un articulo</option>
                                                                     <?php foreach ($articulos as $articulo) { ?>
-                                                                      <option value="<?php echo $articulo['art_cod']."_".$articulo['art_preciov'];?>"><?php echo $articulo['art_descri']." ".$articulo['mar_descri'];?></option>
+                                                                      <option value="<?php echo $articulo['art_cod']."_".$articulo['art_precioc'];?>"><?php echo $articulo['art_descri']." ".$articulo['mar_descri'];?></option>
                                                                     <?php }?>
                                                                 </select>
                                                         </div>
@@ -186,7 +184,7 @@ if (!isset($_SESSION['usu_nick'])) {
                                                     <div class="form-group">
                                                         <label class="control-label col-lg-2">Precio:</label>
                                                         <div class="col-lg-3 col-md-4 col-sm-4">
-                                                            <input type="number" class="form-control" name="vped_precio" min="1" required="" id="vprecio"/>
+                                                            <input type="number" class="form-control" name="vped_precioc" min="1" required="" id="vprecioc"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -251,7 +249,7 @@ if (!isset($_SESSION['usu_nick'])) {
         <script>
             function precio(){
             var valor = $('#articulo').val().split('_');
-            $('#vprecio').val(valor[1]);
+            $('#vprecioc').val(valor[1]);
             };
             function editar(ped,art,dep){
                 $.ajax({
@@ -269,8 +267,7 @@ if (!isset($_SESSION['usu_nick'])) {
             function borrar(datos){
                 var dat = datos.split('_');
                 $('#si').attr('href','pedcompras_dcontrol.php?vped_com='+dat[0]+'&vart_cod='+dat[1]+'&vdep_cod='+dat[2]+'&accion=3');
-                $('#confirmacion').html('<span class="glyphicon glyphicon-warning-sign"></span> Desea quitar el articulo \n\
-        <strong>'+dat[3]+'</strong> ?');
+                $('#confirmacion').html('<span class="glyphicon glyphicon-warning-sign"></span> Desea quitar el articulo <strong>'+dat[1]+'</strong> ?');
             }
         </script>
 <!--FIN SCRIPTS MODALES-->

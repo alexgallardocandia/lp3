@@ -8,8 +8,9 @@ $sql = "select sp_pedventas(".$_REQUEST['accion'].", ".(!empty($_REQUEST['vped_c
 $resultado = consultas::get_datos($sql);
 
 if ($resultado[0]['resul'] != null) {
-    $_SESSION['mensaje'] = $resultado[0]['resul'];
-    header("location:pedventas_index.php");
+    $loc = explode("*",$resultado[0]['resul']);
+    $_SESSION['mensaje'] = $loc[0];
+    header("location:".$loc[1]);
 } else {
     $_SESSION['mensaje'] = "Error:".$sql;
     header("location:pedventas_index.php");
