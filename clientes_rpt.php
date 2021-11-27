@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -48,7 +48,7 @@
                                                             <div class="panel-body">
                                                                 <div class="list-group">
                                                                     <a href="clientes_rpt.php?opcion=1" class="list-group-item">Por Codigo</a>
-                                                                    <a href="clientes_rpt.php?opcion=2" class="list-group-item">Por Descripción</a>
+                                                                    <a href="clientes_rpt.php?opcion=2" class="list-group-item">Por Nombre</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -66,9 +66,9 @@
 
                                                                         <select class="form-control select2" name="vdesde" required="">
                                                                             <?php foreach ($clientes as $clientes) { ?>
-                                                                              <option value="<?php echo ($opcion==1)?$clientes['cli_cod']:$clientes['cli_nombre'];?>"><?php echo ($opcion==1)?$clientes['cli_cod']:$clientes['cli_nombre'];?></option>   
+                                                                              <option value="<?php echo ($opcion==1)?$clientes['cli_cod']:$clientes['cli_nombre'];?>"><?php echo ($opcion==1)?$clientes['cli_cod']:$clientes['cli_nombre'];?></option>
                                                                             <?php }?>
-                                                                        </select>  
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -77,11 +77,11 @@
                                                                        <?php $clientes = consultas::get_datos("select * from clientes order by cli_cod");?>
                                                                         <select class="form-control select2" name="vhasta" required="">
                                                                             <?php foreach ($clientes as $clientes) { ?>
-                                                                              <option value="<?php echo ($opcion==1)?$clientes['cli_cod']:$clientes['cli_nombre'];?>"><?php echo ($opcion==1)?$clientes['cli_cod']:$clientes['cli_nombre'];?></option>   
+                                                                              <option value="<?php echo ($opcion==1)?$clientes['cli_cod']:$clientes['cli_nombre'];?>"><?php echo ($opcion==1)?$clientes['cli_cod']:$clientes['cli_nombre'];?></option>
                                                                             <?php }?>
-                                                                        </select>  
+                                                                        </select>
                                                                     </div>
-                                                                </div>                                                                
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -99,10 +99,8 @@
                     </div>
                 </div>
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
-            </div>                  
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+            </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
     </body>
 </html>
-
-
