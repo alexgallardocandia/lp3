@@ -8,7 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php 
+        <?php
         session_start();/*Reanudar sesion*/
         if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
@@ -67,16 +67,16 @@
                                                                             <label class="control-label col-lg-2">Desde:</label>
                                                                             <div class="col-lg-6">
                                                                                 <input type="date" name="vdesde" class="form-control"/>
-                                                                                <i class="fa fa-calendar form-control-feedback"></i>                                                                        
+                                                                                <i class="fa fa-calendar form-control-feedback"></i>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group has-feedback">
                                                                             <label class="control-label col-lg-2">Hasta:</label>
                                                                             <div class="col-lg-6">
                                                                                 <input type="date" name="vhasta" class="form-control"/>
-                                                                                <i class="fa fa-calendar form-control-feedback"></i>                                                                        
+                                                                                <i class="fa fa-calendar form-control-feedback"></i>
                                                                             </div>
-                                                                        </div>                                                                
+                                                                        </div>
                                                                 <?php   break;
                                                                         case 2: //por proveedor
                                                                         $proveedor = consultas::get_datos("select prv_cod,prv_ruc,(prv_razonsocial) as nombres from proveedor where prv_cod in(select prv_cod from pedido_cabcompra)"); ?>
@@ -86,7 +86,7 @@
                                                                         <select class="form-control select2" name="vproveedor" required="">
                                                                             <option value="">Seleccione un Proveedor</option>
                                                                             <?php foreach ($proveedor as $prov) { ?>
-                                                                            <option value="<?php echo $prov['prv_cod'];?>"><?php echo $prov['nombres'];?></option>     
+                                                                            <option value="<?php echo $prov['prv_cod'];?>"><?php echo $prov['nombres'];?></option>
                                                                             <?php }?>
                                                                         </select>
                                                                     </div>
@@ -100,12 +100,12 @@
                                                                                 <select class="form-control select2" name="varticulo" required="">
                                                                                     <option value="">Seleccione un articulo</option>
                                                                                     <?php foreach ($articulos as $articulo) { ?>
-                                                                                    <option value="<?php echo $articulo['art_cod'];?>"><?php echo $articulo['art_descri']." ".$articulo['mar_descri'];?></option>     
+                                                                                    <option value="<?php echo $articulo['art_cod'];?>"><?php echo $articulo['art_descri']." ".$articulo['mar_descri'];?></option>
                                                                                     <?php }?>
                                                                                 </select>
                                                                             </div>
-                                                                        </div>                                                                            
-                                                                    <?php  break;             
+                                                                        </div>
+                                                                    <?php  break;
                                                                         case 4: //por empleado
                                                                         $empleados = consultas::get_datos("select emp_cod,(emp_nombre||' '||emp_apellido) as nombres from empleado where emp_cod in(select emp_cod from pedido_cabventa)"); ?>
                                                                         <div class="form-group">
@@ -114,12 +114,12 @@
                                                                                 <select class="form-control select2" name="vempleado" required="">
                                                                                     <option value="">Seleccione un empleado</option>
                                                                                     <?php foreach ($empleados as $empleado) { ?>
-                                                                                    <option value="<?php echo $empleado['emp_cod'];?>"><?php echo $empleado['nombres'];?></option>     
+                                                                                    <option value="<?php echo $empleado['emp_cod'];?>"><?php echo $empleado['nombres'];?></option>
                                                                                     <?php }?>
                                                                                 </select>
                                                                             </div>
-                                                                        </div>                                                                            
-                                                                    <?php break;                                                                        
+                                                                        </div>
+                                                                    <?php break;
                                                                     }?>
                                                             </div>
                                                         </div>
@@ -138,10 +138,8 @@
                     </div>
                 </div>
             </div>
-                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->  
-            </div>                  
+                  <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+            </div>
         <?php require 'menu/js_lte.ctp'; ?><!--ARCHIVOS JS-->
     </body>
 </html>
-
-

@@ -11,7 +11,7 @@ class MYPDF extends TCPDF {
         // Set font
         $this->SetFont('helvetica', 'I', 8);
         // Page number
-        $this->Cell(0,0, 'Pag. '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, 
+        $this->Cell(0,0, 'Pag. '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0,
                 false, 'R', 0, '', 0, false, 'T', 'M');
     }
 }
@@ -62,9 +62,9 @@ $pdf->Ln();
         $pdf->SetDrawColor(234, 234, 234);
         $pdf->SetLineWidth(0.0);
 
-        
+
         $pdf->SetFont('', 'B',12);
-        // Header        
+        // Header
         $pdf->SetFillColor(0, 139, 200);
         $pdf->SetLineWidth(0.0);
         $pdf->SetTextColor( 255, 255, 255 );
@@ -73,12 +73,12 @@ $pdf->Ln();
         $pdf->Cell(50,5,'APELLIDOS', 1, 0, 'C', 1);
         $pdf->Cell(50,5,'TELEFONO', 1, 0, 'C', 1);
         $pdf->Cell(50,5,'DIRECCION', 1, 0, 'C', 1);
-        
+
         $pdf->Ln();
         $pdf->SetFont('', '');
         $pdf->SetFillColor(255, 255, 255);
         $pdf->SetTextColor(0);
-        
+
          //CONSULTAS DE LOS REGISTROS
         if (!empty(isset($_REQUEST['vdesde'])) && !empty(isset($_REQUEST['vhasta']))) {
             if ($_REQUEST['opcion'] == 1) { //por codigo
@@ -95,14 +95,14 @@ $pdf->Ln();
             $pdf->Cell(50,5,$c['cli_nombre'], 1, 0, 'L', 1);
             $pdf->cell(50,5,$c['cli_apellido'],1, 0,'L',1);
             $pdf->cell(50,5,$c['cli_telefono'],1, 0,'C',1);
-            $pdf->cell(50,5,$c['cli_direcc'],1, 0,'C',1);
+            $pdf->cell(50,5,$c['cli_direcc'],1, 0,'L',1);
             $pdf->Ln();
         }
         }else{
             $pdf->Cell(0, 0, "No se han registrado cargos...", 1, 0, 'L', 1);
         }
-       
-        
+
+
 
 
 //SALIDA AL NAVEGADOR

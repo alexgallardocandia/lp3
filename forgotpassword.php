@@ -12,6 +12,10 @@ if ($_SESSION) {
 		<title>SIGLP3</title>
 		<link rel="icon" type="favicon" href="img/índice.png"/>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <?php
+
+    require 'menu/css_lte.ctp'; ?><!--ARCHIVOS CSS-->
+
 		<style>
     @media (min-width: 768px){
         .sidebar-mini.sidebar-collapse .main-header .logo>.logo-mini {
@@ -330,7 +334,7 @@ Licensed under MIT
 </style>
  <style>
             body, html {
-               background: url(img/login-background.jpg) no-repeat center center fixed;
+               background: url(img/constructor.jpg) no-repeat center center fixed;
               -webkit-background-size: cover;
               -moz-background-size: cover;
               -o-background-size: cover;
@@ -402,40 +406,15 @@ Licensed under MIT
 		</style>
 	</head>
 	<body>
-		<div class="login-box">
-            <div class="login-logo" style="background-color:#357ca5;padding:0.3em;color:#fff;">
-                <!--<span class="logo-lg" style="/*margin-top: -0.2em;*/"><img src="/sigest/img/logo-mopc-full.png"></span>-->
-                <span class="logo-lg" style="margin-top: -0.2em;"><img src="img/logo_2019.png" width="70%"></span>
-                <?php
-                    //Mensaje de error
-                    if (!empty($_SESSION['error'])){?>
-                        <div class="alert alert-danger" role="alert" id="error">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>
-                            <?php echo $_SESSION['error']; ?>
-                        </div>
-                    <?php }?>
-            </div><!-- /.login-logo -->
- 			<div class="login-box-body">
-                <form action="acceso.php" method="post">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="form-control" placeholder="Usuario" name="usuario" autofocus="">
-                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="password" class="form-control" placeholder="Contraseña" name="clave">
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    </div>
+		<div class="container">
+ 			<div class="col-lg-12 col-md-12 col-xs-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-xs-12">
-                            <button type="submit" class="btn btn-primary pull-right">Acceder</button>
+                            <a href="index.php" class="btn btn-primary pull-right"><i class="fa fa-arrow-left"></i>Volver</a>
                         </div>
                     </div>
-
-                </form>
-                <a href="/lp3/forgotpassword.php">Olvid&eacute; mi contrase&ntilde;a</a>
-
-            </div><!-- /.login-box-body -->
-        </div><!-- /.login-box -->
+        </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
 
 		<!--<div class="container well" id="sha" >
 

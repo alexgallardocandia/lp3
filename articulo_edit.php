@@ -45,7 +45,7 @@
                                             <div class="col-lg-6">
                                             <input type="hidden" name="accion" value="2"/><!--bandera-->
                                             <input type="hidden" name="vart_cod" value="<?php echo $resultado[0]['art_cod']?>"/>
-                                            <input type="number" min="1" pattern="^[0-9]+" name="vart_codbarra" class="form-control" value="<?php echo $resultado[0]['art_codbarra'];?>" required autofocus>
+                                            <input type="text"  name="vart_codbarra" class="form-control" value="<?php echo $resultado[0]['art_codbarra'];?>" required autofocus>
                                             </div>
                                         </div>
                                         <div class="form-group">

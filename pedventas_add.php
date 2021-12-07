@@ -55,7 +55,7 @@
                                                         <div class="col-xs-12 col-lg-4 col-md-6">
                                                             <?php $fecha = consultas::get_datos("select current_date as fecha"); ?>
                                                             <label>Fecha:</label>
-                                                            <input type="date" name="vped_fecha" class="form-control" required="" value="<?php echo $fecha[0]['fecha']; ?>" readonly=""/>
+                                                            <input type="date" name="vped_fecha" class="form-control" required="" value="<?php echo $fecha[0]['fecha']; ?>" class="form-control" disabled   />
                                                         </div>
                                                         <div class="col-xs-12 col-lg-4 col-md-6">
                                                             <label>Clientes:</label>

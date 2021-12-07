@@ -11,7 +11,7 @@ class MYPDF extends TCPDF {
         // Set font
         $this->SetFont('helvetica', 'I', 8);
         // Page number
-        $this->Cell(0,0, 'Pag. '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, 
+        $this->Cell(0,0, 'Pag. '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0,
                 false, 'R', 0, '', 0, false, 'T', 'M');
     }
 }
@@ -68,6 +68,7 @@ if (!empty(isset($_REQUEST['opcion']))) {
         case 1: //por fecha
             $cabeceras = consultas::get_datos("select * from v_pedido_cabcompra "
                     . "where com_fecha::date between '".$_REQUEST['vdesde']."' and '".$_REQUEST['vhasta']."'");
+
             break;
         case 2: //por proveedor
             $cabeceras = consultas::get_datos("select * from v_pedido_cabcompra "
@@ -80,10 +81,10 @@ if (!empty(isset($_REQUEST['opcion']))) {
         case 4: //por empleado
             $cabeceras = consultas::get_datos("select * from v_pedido_cabcompra "
                     . "where emp_cod =".$_REQUEST['vempleado']);
-            break;        
-    }   
+            break;
+    }
 }else{
-    $cabeceras = consultas::get_datos("select * from v_pedido_cabcompra where ped_com=".$_REQUEST['vped_com']);           
+    $cabeceras = consultas::get_datos("select * from v_pedido_cabcompra where ped_com=".$_REQUEST['vped_com']);
 }
 if (!empty($cabeceras)) {
     foreach ($cabeceras as $cabecera) {
@@ -94,7 +95,7 @@ if (!empty($cabeceras)) {
         $pdf->Cell(130,2,'ELABORADO POR: '.$cabecera['empleado'],0,'','L');
         $pdf->Cell(80,2,'ESTADO: '.$cabecera['estado'],0,1);
         $pdf->Cell(130,2,'SUCURSAL: '.$cabecera['suc_descri'],0,'','L');
-        $pdf->Cell(80,2,'PEDIDO N°: '.$cabecera['ped_com'],0,1); 
+        $pdf->Cell(80,2,'PEDIDO N°: '.$cabecera['ped_com'],0,1);
 
         $pdf->Ln();
         $pdf->SetFont('', 'B', 12);
@@ -111,7 +112,7 @@ if (!empty($cabeceras)) {
             $pdf->Cell(30,5,'IMPUESTO',1,0,'C',1);
            $pdf->Ln();
            $pdf->SetFont('', '');
-           $pdf->SetFillColor(255, 255, 255);     
+           $pdf->SetFillColor(255, 255, 255);
            foreach ($detalles as $det) {
                $pdf->Cell(15,5,$det['art_cod'],1,0,'C',1);
                $pdf->Cell(80,5,$det['art_descri']." ".$det['mar_descri'],1,0,'L',1);
@@ -121,7 +122,7 @@ if (!empty($cabeceras)) {
                $pdf->Cell(30,5,$det['tipo_descri'],1,0,'C',1);
                $pdf->Ln();
            }
-           $pdf->SetFont('', 'B', 12);  
+           $pdf->SetFont('', 'B', 12);
             $pdf->SetFillColor(180, 180, 180);
            $pdf->Cell(135,5,'TOTAL: '.$cabeceras[0]['totalletra'],1,0,'L',1);
            $pdf->Cell(60,5,number_format($cabeceras[0]['ped_total'],0,',','.'),1,0,'C',1);
@@ -129,11 +130,11 @@ if (!empty($cabeceras)) {
                $pdf->Ln();
         }else{
             $pdf->Cell(135,5,'El pedido no tiene detalles cargados',0,'L',1);
-        }        
+        }
     }
 
 }else{
-    $pdf->Cell(135,5,'No se encontraron registros coincidentes',0,'L',1);
+    $pdf->Cell(135,5,'No se encontraron registros coincidentes ',0,'L',1);
 }
 
 
