@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" type="image/x-icon" href="img/pedvent.png">
-        <title>Agregar Compras</title>
+        <title>Agregar Orden</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -27,29 +27,22 @@
                             <div class="box box-primary">
                                 <div class="box-header">
                                     <i class="fa fa-plus"></i>
-                                    <h3 class="box-title">Agregar Compras</h3>
+                                    <h3 class="box-title">Agregar Orden</h3>
                                     <div class="box-tools">
-                                        <a href="compras_index.php" class="btn btn-primary btn-sm" data-title="Volver" rel="tooltip">
+                                        <a href="orden_index.php" class="btn btn-primary btn-sm" data-title="Volver" rel="tooltip">
                                             <i class="fa fa-arrow-left"></i> VOLVER
                                         </a>
                                     </div>
                                 </div>
-                                <form action="compras_control.php" method="post" accept-charset="utf-8" class="form-horizontal">
+                                <form action="orden_control.php" method="post" accept-charset="utf-8" class="form-horizontal">
                                     <input type="hidden" name="accion" value="1">
-                                    <input type="hidden" name="vcom_cod" value="0">
+                                    <input type="hidden" name="vorden_cod" value="0">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <?php $fecha = consultas::get_datos("select current_date as fecha");?>
                                             <label class="control-label col-lg-2 col-md-2 col-sm-2"> Fecha:</label>
                                             <div class="col-lg-4 col-md-4 col-sm-5">
-                                                <input type="date" name="vcom_fecha" max="<?php echo $fecha[0]['fecha'];?>" class="form-control" value=""/>
-                                            </div>
-                                            <label class="control-label col-lg-2 col-md-2">Condición:</label>
-                                            <div class="col-lg-4 col-md-4 col-sm-5">
-                                                <select class="form-control select2" name="vtipo_compra" required="" id="tipo_venta" onchange="tipocompra()">
-                                                    <option value="CONTADO">CONTADO</option>
-                                                    <option value="CREDITO">CREDITO</option>
-                                                </select>
+                                              <input type="date" name="vcom_fecha" class="form-control" required="" value="<?php echo $fecha[0]['fecha'];?>" class="form-control" disabled />
                                             </div>
                                         </div>
                                         <!-- AGREGAR LISTA DESPLEGABLE Proveedor -->
@@ -72,7 +65,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div id="det_pedidos"></div>
+
                                         </div>
                                         <!-- FIN LISTA DESPLEGABLE MARCA -->
                                         <div class="form-group tipo" style="display: none;">

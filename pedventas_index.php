@@ -69,8 +69,8 @@ if (!isset($_SESSION['usu_nick'])) {
                                                     $valor=$_REQUEST['buscar'];
                                                 }
                                                 $pedidos = consultas::get_datos("select * from v_pedido_cabventa "
-                                                    ."where (ped_cod||trim(upper(cliente))) "
-                                                    ."like trim(upper('%".$valor."%')) order by ped_cod");
+                                                    ."where emp_cod =".$_SESSION['emp_cod']." and (ped_cod||trim(upper(cliente)))"                                                    
+                                                    ." ilike trim(upper('%".$valor."%')) order by ped_cod");
 
                                             if (!empty($pedidos)) {?>
                                                 <div class="table-responsive">

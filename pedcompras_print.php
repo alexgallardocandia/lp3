@@ -70,10 +70,6 @@ if (!empty(isset($_REQUEST['opcion']))) {
                     . "where com_fecha::date between '".$_REQUEST['vdesde']."' and '".$_REQUEST['vhasta']."'");
 
             break;
-        case 2: //por proveedor
-            $cabeceras = consultas::get_datos("select * from v_pedido_cabcompra "
-                    . "where prv_cod =".$_REQUEST['vproveedor']);
-            break;
         case 3: //por articulo
             $cabeceras = consultas::get_datos("select * from v_pedido_cabcompra "
                     . "where ped_com in(select ped_com from detalle_pedcompra where art_cod in(".$_REQUEST['varticulo']."))");
@@ -90,7 +86,7 @@ if (!empty($cabeceras)) {
     foreach ($cabeceras as $cabecera) {
         $pdf->SetFont('', '', 12);
 
-        $pdf->Cell(130,2,'PROVEEDOR: ('.$cabecera['prv_ruc'].") ".$cabeceras[0]['prv_razonsocial'],0,'','L');
+        
         $pdf->Cell(80,2,'FECHA: '.$cabecera['com_fecha'],0,1);
         $pdf->Cell(130,2,'ELABORADO POR: '.$cabecera['empleado'],0,'','L');
         $pdf->Cell(80,2,'ESTADO: '.$cabecera['estado'],0,1);

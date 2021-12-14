@@ -14,7 +14,7 @@ if (!isset($_SESSION['usu_nick'])) {
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <?php        
+        <?php
         require 'menu/css_lte.ctp'; ?><!--ARCHIVOS CSS-->
 
     </head>
@@ -31,7 +31,7 @@ if (!isset($_SESSION['usu_nick'])) {
                             <?php if (!empty($_SESSION['mensaje'])) {?>
                                 <div class="alert alert-danger" role="alert" id="mensaje">
                                     <span class="glyphicon glyphicon-exclamation-sign"></span>
-                                <?php echo $_SESSION['mensaje']; 
+                                <?php echo $_SESSION['mensaje'];
                                     $_SESSION['mensaje']='';?>
                                 </div>
                             <?php } ?>
@@ -63,23 +63,22 @@ if (!isset($_SESSION['usu_nick'])) {
                                                     </div>
                                                 </div>
                                             </form>
-                                            <?php 
+                                            <?php
                                                 $valor='';
                                                 if (isset($_REQUEST['buscar'])) {
                                                     $valor=$_REQUEST['buscar'];
                                                 }
                                                 $pedidos = consultas::get_datos("select * from v_pedido_cabcompra "
-                                                    ."where (ped_com||trim(upper(prv_razonsocial))) "
-                                                    ."like trim(upper('%".$valor."%')) order by ped_com");
+                                                    ."where emp_cod=".$_SESSION['emp_cod']." and (ped_com||trim(upper(empleado))) "
+                                                    ."ilike trim(upper('%".$valor."%')) order by ped_com");
 
                                             if (!empty($pedidos)) {?>
                                                 <div class="table-responsive">
                                                     <table class="table col-lg-12 col-md-12 col-sm-12 col-xs-12 tablo-bordered table-striped table-condensed">
                                                         <thead>
                                                             <tr>
-                                                                <th>#</th>
+                                                                <th>N° de Pedido</th>
                                                                 <th>Fecha</th>
-                                                                <th>Proveedor</th>
                                                                 <th>Total</th>
                                                                 <th>Estado</th>
                                                                 <th class="text-center">Acciones</th>
@@ -88,9 +87,8 @@ if (!isset($_SESSION['usu_nick'])) {
                                                         <tbody>
                                                             <?php foreach ($pedidos as $ped) {?>
                                                                 <tr>
-                                                                    <td data-title="Codigo"><?php echo $ped['ped_com']; ?></td>
+                                                                    <td data-title="N° de Pedido"><?php echo $ped['ped_com']; ?></td>
                                                                     <td data-title="Fecha"><?php echo $ped['com_fecha']; ?></td>
-                                                                    <td data-title="Proveedor"><?php echo $ped['prv_razonsocial']; ?></td>
                                                                     <td data-title="Total"><?php echo number_format($ped['ped_total'], 0, ",", "." ); ?></td>
                                                                     <td data-title="Estado"><?php echo $ped['estado']; ?></td>
 
@@ -100,21 +98,17 @@ if (!isset($_SESSION['usu_nick'])) {
                                                                             <a href="pedcompras_det.php?vped_com=<?php echo $ped['ped_com']; ?>" class="btn btn-success btn-sm" role="button" data-title="Detalles" rel="tooltip" data-placement="top">
                                                                                 <i class="fa fa-list"></i>
                                                                             </a>
-                                                                            <!--Editar-->
-                                                                            <a href="pedcompras_edit.php?vped_com=<?php echo $ped['ped_com']; ?>" class="btn btn-warning btn-sm" role="button" data-title="Editar" rel="tooltip" data-placement="top">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                             <!--anular-->
-                                                                            <a onclick="anular(<?php echo "'".$ped['ped_com']."_".$ped['prv_razonsocial']."_".$ped['com_fecha']."'"?>)" class="btn btn-danger btn-sm"  
+                                                                            <a onclick="anular(<?php echo "'".$ped['ped_com']."_".$ped['com_fecha']."'"?>)" class="btn btn-danger btn-sm"
                                                                                data-title='Anular' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#anular">
                                                                                 <span class="glyphicon glyphicon-remove"></span>
                                                                             </a>
                                                                         <?php }?>
                                                                             <!--Imprimir-->
-                                                                            <a target="new" href="/lp3/pedcompras_print.php?vped_com=<?php echo $ped['ped_com']; ?>" class="btn btn-primary btn-sm" role="button" target="print" data-title="Imprimir" rel="tooltip" data-placement="top">
+                                                                            <a target="new" href="/taller/pedcompras_print.php?vped_com=<?php echo $ped['ped_com']; ?>" class="btn btn-primary btn-sm" role="button" target="print" data-title="Imprimir" rel="tooltip" data-placement="top">
                                                                                 <i class="fa fa-print"></i>
                                                                             </a>
-                                                                       
+
                                                                     </td>
                                                                 </tr>
                                                             <?php }; ?>
@@ -129,18 +123,18 @@ if (!isset($_SESSION['usu_nick'])) {
                                             <?php }; ?>
                                         </div>
                                     </div>
-                                </div>    
+                                </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <!--FIN FILA-->
                 </div>
             </div>
-            <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->      
-        </div>               
-                
+            <?php require 'menu/footer_lte.ctp'; ?><!--ARCHIVOS JS-->
+        </div>
+
                 <!--FIN CONTENEDOR-->
-<!--FORMULARIO MODAL BORRAR-->                  
+<!--FORMULARIO MODAL BORRAR-->
             <div class="modal fade" id="anular" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -149,7 +143,7 @@ if (!isset($_SESSION['usu_nick'])) {
                             <h4 class="modal-title"><b>ATENCIÓN</b></h4>
                         </div>
                         <div class="modal-body">
-                            <div class="alert alert-warning" id="confirmacion"></div>    
+                            <div class="alert alert-warning" id="confirmacion"></div>
                         </div>
                         <div class="modal-footer">
                             <a id="si" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign"></span> Si</a>
@@ -168,7 +162,7 @@ if (!isset($_SESSION['usu_nick'])) {
             });
         </script>
 <!--SCRIPTS MODALES-->
-    
+
         <script>
             function anular(datos){
                 var dat = datos.split('_');
@@ -181,5 +175,3 @@ if (!isset($_SESSION['usu_nick'])) {
 
     </body>
 </html>
-
-

@@ -3,8 +3,8 @@
 require 'clases/conexion.php';
 session_start();
 
-$sql = "select sp_pedcompras(".$_REQUEST['accion'].", ".(!empty($_REQUEST['vped_com'])?$_REQUEST['vped_com']:"0").",'".(!empty($_REQUEST['vcom_fecha'])?$_REQUEST['vcom_fecha']:"01-01-2000")."', ".$_SESSION['emp_cod'].", ".
-    (!empty($_REQUEST['vprv_cod'])?$_REQUEST['vprv_cod']:"0").", ".$_SESSION['id_sucursal'].") as resul";
+$sql = "select sp_pedcompras(".$_REQUEST['accion'].", ".(!empty($_REQUEST['vped_com'])?$_REQUEST['vped_com']:"0").",'".(!empty($_REQUEST['vcom_fecha'])?$_REQUEST['vcom_fecha']:"01-01-2000")."', ".$_SESSION['emp_cod']
+.",".$_SESSION['id_sucursal'].") as resul";
 //echo $sql;/*
 $resultado = consultas::get_datos($sql);
 

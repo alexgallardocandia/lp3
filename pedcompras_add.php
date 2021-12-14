@@ -57,26 +57,7 @@
                                                             <label>Fecha:</label>
                                                             <input type="date" name="vcom_fecha" class="form-control" required="" value="<?php echo $fecha[0]['fecha'];?>" class="form-control" disabled />
                                                         </div>
-                                                        <div class="col-xs-12 col-lg-4 col-md-6">
-                                                            <label>Proveedores:</label>
-                                                            <div class="input-group">
-                                                                <?php $proveedor= consultas::get_datos("select * from proveedor order by (prv_razonsocial) asc"); ?>
-                                                                <select class="form-control select2" name="vprv_cod" required="">
-                                                                    <?php if(!empty($proveedor)) {
-                                                                      foreach ($proveedor as $prv) { ?>
-                                                                        <option value="<?php echo $prv['prv_cod']; ?>"><?php echo $prv['prv_razonsocial']; ?></option>
-                                                                    <?php }
-                                                                    }else{ ?>
-                                                                        <option value="">Debe insertar al menos un proveedor</option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                                <span class="input-group-btn">
-                                                                    <button class="btn btn-primary btn-flat" type="button" data-toggle = "modal" data-target="#registrar">
-                                                                        <i class="fa fa-plus"></i>
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
+                                                        
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-lg-4 col-md-6">

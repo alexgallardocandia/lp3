@@ -1,14 +1,14 @@
 <?php
 
 class Conectar //DECLARAMOS LA CLASE Conectar
-{	
+{
 	public static function con()//DECLARAMOS EL METODO con() DONDE VAMOS A CONECTAR CON NUESTRA BASE DE DATOS
 	{
             //DECLARAMOS LA VARIABLE QUE VA A CONTENER NUESTRA CADENA DE CONEXION
-            $cadena = "host = 'localhost' port = '5432' dbname = 'lp3' user = 'postgres' password = '2707'";
+            $cadena = "host = 'localhost' port = '5432' dbname = 'taller_prueba' user = 'postgres' password = '2707'";
             //EJECUTAMOS LA CONEXION Y GUARDAMOS EN LA VARIABLE $con
             $con = pg_connect($cadena) or die ("Error de conexion. ".pg_last_error());
-           
+
             //RETORNAMOS LA CONEXION A NUESTRA BASE DE DATOS
             return $con;
 	}
@@ -22,23 +22,23 @@ class consultas extends Conectar
 	{
 		//EJECUTAMOS LA SENTENCIA SQL QUE LE PASAMOS POR PARAMETROS AL METODO
                 $res = pg_query(parent::con(), $sql) or die($sql.'<br>'. utf8_decode(pg_last_error()));
-		
+
                 //PREGUNTAMOS SI NUESTRA CONSULTA NOS RETORNA DATOS
                 if(isset($res)){//EN CASO DE RETORNAR DATOS
                     while($reg = pg_fetch_assoc($res))//MIENTRAS HAYA FILAS EN EL RESULTADO
                     {
                         $t[]=$reg;//GUARDAMOS NUESTRO RESULTADO EN UN ARREGLO
                     }
-                    
+
                     if(isset($t)){//SI LA VARIABLE t CONTIENE DATOS
                         return $t;//RETORNAMOS LA VARIABLE t
                     }else{//SI LA VARIABLE t NO CONTIENE DATOS
                         return null;//RETORNAMOS NULO
                     }
 		}
-                
+
 	}
-        
+
         //DECLARAMOS EL METODO ejecutar_sql PASANDOLE COMO PARAMETRO LA SENTENCIA.
         public static function ejecutar_sql($sql)//ESTE METODO SOLO RETORNA VERDADERO O FALSO
         {
@@ -48,6 +48,6 @@ class consultas extends Conectar
 				return false;//RETORNA FALSO
 			}
         }
-        
+
 }
 ?>

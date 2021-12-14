@@ -123,7 +123,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-lg-2">C.I. N°</label>
                                     <div class="col-lg-4">
-                                        <input type="number"  name="vcli_ci" class="form-control" required="" autofocus="" min="1" pattern="^[0-9]+" placeholder="Ingrese el CI del cliente">
+                                        <input type="number"  name="vcli_ci" class="form-control" required="" min="1" pattern="^[0-9]+" placeholder="Ingrese el CI del cliente" autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group">

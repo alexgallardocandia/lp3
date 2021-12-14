@@ -60,7 +60,6 @@ if (!isset($_SESSION['usu_nick'])) {
                                                             <tr>
                                                                 <th>#</th>
                                                                 <th>Fecha</th>
-                                                                <th>Proveedores</th>
                                                                 <th>Total</th>
                                                                 <th>Estado</th>
                                                             </tr>
@@ -70,7 +69,6 @@ if (!isset($_SESSION['usu_nick'])) {
                                                                 <tr>
                                                                     <td data-title="Codigo"><?php echo $ped['ped_com']; ?></td>
                                                                     <td data-title="Fecha"><?php echo $ped['com_fecha']; ?></td>
-                                                                    <td data-title="Proveedor"><?php echo $ped['prv_razonsocial']; ?></td>
                                                                     <td data-title="Total"><?php echo number_format($ped['ped_total'], 0, ",", "." ); ?></td>
                                                                     <td data-title="Estado"><?php echo $ped['estado']; ?></td>
                                                                 </tr>
