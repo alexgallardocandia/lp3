@@ -93,7 +93,7 @@
                                                                    data-title='Confirmar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#confirmar">
                                                                     <span class="glyphicon glyphicon-check"></span>
                                                                 </a>
-                                                                <a href="compras_det.php?vorden_cod=<?php echo $com['orden_cod'];?>" class="btn btn-success btn-sm" role='button'
+                                                                <a href="orden_det.php?vorden_cod=<?php echo $com['orden_cod'];?>" class="btn btn-success btn-sm" role='button'
                                                                    data-title='Detalles' rel='tooltip' data-placement='top'>
                                                                     <span class="glyphicon glyphicon-list"></span>
                                                                 </a>
@@ -117,7 +117,7 @@
                                             <?php }else { ?>
                                             <div class="alert alert-info flat">
                                                 <span class="glyphicon glyphicon-info-sign"></span>
-                                                No se han registrado compras a la fecha...
+                                                No se han registrado orden de compras a la fecha...
                                             </div>
                                             <?php }
                                             ?>

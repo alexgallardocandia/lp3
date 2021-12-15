@@ -42,16 +42,28 @@
                                             <?php $fecha = consultas::get_datos("select current_date as fecha");?>
                                             <label class="control-label col-lg-2 col-md-2 col-sm-2"> Fecha:</label>
                                             <div class="col-lg-4 col-md-4 col-sm-5">
-                                              <input type="date" name="vcom_fecha" class="form-control" required="" value="<?php echo $fecha[0]['fecha'];?>" class="form-control" disabled />
+                                              <input type="date" name="vorden_fecha" class="form-control" value="<?php echo $fecha[0]['fecha'];?>" class="form-control" readonly />
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Pedido:</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-5">
+                                                <select class="form-control select2 ped" name="vped_cod" required="" id="tipo_pedido" onchange="pedidos()">
+                                                    <option value="" selected>Seleccione una opcion</option>
+                                                    <option value="SIN">SIN PEDIDO</option>
+                                                    <option value="CON">CON PEDIDO</option>
+                                                </select>
+                                            </div>
+                                            <div id="det_pedidos"></div>
+                                        </div>
+
                                         <!-- AGREGAR LISTA DESPLEGABLE Proveedor -->
                                         <div class="form-group">
                                             <label class="control-label col-lg-2 col-md-2">Proveedor:</label>
                                             <div class="col-lg-6 col-md-6 col-sm-5">
                                                 <div class="input-group">
                                                     <?php $proveedor = consultas::get_datos("select * from proveedor order by prv_razonsocial");?>
-                                                    <select class="form-control select2" name="vprv_cod" required="" id="proveedor" onchange="pedidos()">
+                                                    <select class="form-control select2" name="vprv_cod" required="" id="proveedor">
                                                         <option value="">Seleccione un proveedor</option>
                                                         <?php foreach ($proveedor as $prv) { ?>
                                                           <option value="<?php echo $prv['prv_cod'];?>"><?php echo "(".$prv['prv_ruc'].") ".$prv['prv_razonsocial'];?></option>
@@ -68,16 +80,6 @@
 
                                         </div>
                                         <!-- FIN LISTA DESPLEGABLE MARCA -->
-                                        <div class="form-group tipo" style="display: none;">
-                                            <label class="control-label col-lg-2 col-md-2 col-sm-2"> Cant. Cuotas:</label>
-                                            <div class="col-lg-4 col-md-4 col-sm-5">
-                                                <input type="number" name="vcan_cuota" class="form-control" min="1" value="1" required="" id="cuotas"/>
-                                            </div>
-                                            <label class="control-label col-lg-2 col-md-2">Intervalo:</label>
-                                            <div class="col-lg-4 col-md-4 col-sm-5">
-                                                <input type="number" name="vcom_plazo" class="form-control" min="0" max="36" value="0" required="" id="intervalo"/>
-                                            </div>
-                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-lg-2 col-md-2 col-sm-2"> Empleado:</label>
                                             <div class="col-lg-4 col-md-4 col-sm-5">
@@ -108,7 +110,7 @@
 
             function tipocompra(){
 //                alert($("#tipo_venta").val())
-                  if ($('#tipo_compra').val()==='CONTADO') {
+              /*    if ($('#tipo_pedido').val()==='SIN') {
                       $('.tipo').hide();
                        $("#cuotas").val(1);
                       $("#cuotas").prop('readonly',true);
@@ -118,14 +120,15 @@
                       $('.tipo').show();
                       $("#cuotas").prop('readonly',false);
                       $("#intervalo").prop('readonly',false);
-                  }
+                  }*/
             };
             /*FUNCION PARA OBTENER LOS PEDIDOS
              * DEL CLIENTE SELECCCIONADO*/
             function pedidos(){
+              if ($('.ped').val()==='CON') {
                 $.ajax({
                    type     : "GET",
-                   url      : "/taller/compras_pedidos.php?vprv_cod="+$('#proveedor').val(),
+                   url      : "/taller/orden_pedidos.php?vped_com="+$('#pedido').val(),
                    cache    : false,
                 beforeSend:function(){
                    $("#det_pedidos").html('<img src="img/loader.gif"/><strong>Cargando...</strong>')
@@ -134,7 +137,10 @@
                     $("#det_pedidos").html(data)
                 }
                 });
-            }
+              }else{
+
+              }
+            };
         </script>
     </body>
 </html>
