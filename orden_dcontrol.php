@@ -17,8 +17,8 @@ $resultado = consultas::get_datos($sql);
 
 if ($resultado[0]['resul']!=null) {
     $_SESSION['mensaje'] = $resultado[0]['resul'];
-    header("location:compras_det.php?vorden_cod=".$_REQUEST['vorden_cod']);
+    header("location:orden_det.php?vorden_cod=".$_REQUEST['vorden_cod']);
 }else{
     $_SESSION['mensaje'] = "Error:".$sql;
-    header("location:compras_det.php?vorden_cod=".$_REQUEST['vorden_cod']);
+    header("location:orden_det.php?vorden_cod=".$_REQUEST['vorden_cod']);
 }

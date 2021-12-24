@@ -9,7 +9,7 @@ if ($_SESSION) {
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<title>SIGLP3</title>
+		<title>SIGTALLER</title>
 		<link rel="icon" type="favicon" href="img/índice.png"/>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<style>
@@ -432,7 +432,7 @@ Licensed under MIT
                     </div>
 
                 </form>
-                <a href="/lp3/forgotpassword.php">Olvid&eacute; mi contrase&ntilde;a</a>
+                <a href="/taller/forgotpassword.php">Olvid&eacute; mi contrase&ntilde;a</a>
 
             </div><!-- /.login-box-body -->
         </div><!-- /.login-box -->

@@ -104,7 +104,7 @@
                                                                     <span class="glyphicon glyphicon-remove"></span>
                                                                 </a>
                                                                 <?php }?>
-                                                                <a href="compras_print.php?vorden_cod=<?php echo $com['orden_cod'];?>" class="btn btn-default btn-sm" role='button'
+                                                                <a href="orden_print.php?vorden_cod=<?php echo $com['orden_cod'];?>" class="btn btn-default btn-sm" role='button'
                                                                    data-title='Imprimir' rel='tooltip' data-placement='top' target="print">
                                                                     <span class="glyphicon glyphicon-print"></span>
                                                                 </a>

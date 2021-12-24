@@ -4,7 +4,7 @@ session_start();
 if (!isset($_SESSION['usu_nick'])) {
             header('location: index.php');
         };
-$detalles = consultas::get_datos("select * from v_detalle_compra where orden_cod=".$_REQUEST['vorden_cod']
+$detalles = consultas::get_datos("select * from v_detalle_orden where orden_cod=".$_REQUEST['vorden_cod']
         ." and art_cod =".$_REQUEST['vart_cod']." and dep_cod =".$_REQUEST['vdep_cod']);
 ?>
 <div class="modal-header">

@@ -90,8 +90,8 @@
                                     </div>
                                     <!-- FIN CABECERA-->
                                     <!-- INCICIO ITEMS PEDIDOS-->
-                                   <?php $pedidosdet = consultas::get_datos("select * from v_detalle_pedcompra where ped_com=".$compras[0]['ped_com']
-                                    ." and art_cod not in (select art_cod from detalle_orden where orden_cod=".$compras[0]['orden_cod'].")");
+                                   <?php $pedidosdet = consultas::get_datos("select * from v_detalle_pedcompra where ped_com=".$compras[0]['orden_cod']
+                                    ." and art_cod not in (select art_cod from v_detalle_orden where orden_cod=".$compras[0]['orden_cod'].")");
 
                                     if (!empty($pedidosdet)) { ?>
                                     <div class="row">
@@ -143,7 +143,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <?php /*$detalles = consultas::get_datos("select * from v_detalle_orden where orden_cod=".$compras[0]['orden_cod']);*/
-                                            $detalles = consultas::get_datos("select * from v_detalle_pedcompra where ped_com=".$compras[0]['ped_com']);
+                                            $detalles = consultas::get_datos("select * from v_detalle_orden where orden_cod=".$compras[0]['orden_cod']);
                                                  if (!empty($detalles)) { ?>
                                             <div class="box-header">
                                                 <i class="fa fa-list"></i>
@@ -169,16 +169,16 @@
                                                             <td data-title="#"><?php echo $det['art_cod'];?></td>
                                                             <td data-title="Descripción"><?php echo $det['art_descri']." ".$det['mar_descri'];?></td>
                                                             <td data-title="Deposito"><?php echo $det['dep_descri'];?></td>
-                                                            <td data-title="Cantidad"><?php echo $det['ped_cant'];?></td>
-                                                            <td data-title="Precio"><?php echo number_format($det['ped_precio'],0,",",".");?></td>
+                                                            <td data-title="Cantidad"><?php echo $det['orden_cant'];?></td>
+                                                            <td data-title="Precio"><?php echo number_format($det['orden_precio'],0,",",".");?></td>
                                                             <td data-title="Impuesto"><?php echo $det['tipo_descri'];?></td>
                                                             <td data-title="Precio"><?php echo number_format($det['subtotal'],0,",",".");?></td>
                                                             <td class="text-center">
-                                                                <a onclick="editar(<?php echo $det['ped_com'];?>,<?php echo $det['art_cod'];?>,<?php echo $det['dep_cod'];?>)" class="btn btn-warning btn-sm" role='button'
+                                                                <a onclick="editar(<?php echo $det['orden_cod'];?>,<?php echo $det['art_cod'];?>,<?php echo $det['dep_cod'];?>)" class="btn btn-warning btn-sm" role='button'
                                                                    data-title='Editar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#editar">
                                                                     <span class="glyphicon glyphicon-edit"></span>
                                                                 </a>
-                                                                <a onclick="borrar(<?php echo "'".$det['ped_com']."_".$det['art_cod']."_".$det['dep_cod']."_".$det['art_descri']." ".$det['mar_descri']."'"?>)" class="btn btn-danger btn-sm" role='button'
+                                                                <a onclick="borrar(<?php echo "'".$det['orden_cod']."_".$det['art_cod']."_".$det['dep_cod']."_".$det['art_descri']." ".$det['mar_descri']."'"?>)" class="btn btn-danger btn-sm" role='button'
                                                                    data-title='Borrar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#borrar">
                                                                     <span class="glyphicon glyphicon-trash"></span>
                                                                 </a>
