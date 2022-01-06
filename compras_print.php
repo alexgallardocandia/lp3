@@ -83,14 +83,14 @@ if (!empty(isset($_REQUEST['opcion']))) {
         case 4: //por empleado
             $cabeceras = consultas::get_datos("select * from v_compras "
                     . "where emp_cod =".$_REQUEST['vempleado']);
-            break; 
+            break;
         case 5: //por sucursal
             $cabeceras = consultas::get_datos("select * from v_compras "
                     . "where id_sucursal =".$_REQUEST['vsucursal']);
-            break;         
-    }   
+            break;
+    }
 }else{
-    $cabeceras = consultas::get_datos("select * from v_compras where com_cod=".$_REQUEST['vcom_cod']);           
+    $cabeceras = consultas::get_datos("select * from v_compras where com_cod=".$_REQUEST['vcom_cod']);
 }
 if (!empty($cabeceras)) {
     foreach ($cabeceras as $cabecera) {
@@ -101,14 +101,14 @@ if (!empty($cabeceras)) {
         $pdf->Cell(130,2,'ELABORADO POR: '.$cabecera['empleado'],0,'','L');
         $pdf->Cell(80,2,'ESTADO: '.$cabecera['com_estado'],0,1);
         $pdf->Cell(130,2,'SUCURSAL: '.$cabecera['suc_descri'],0,'','L');
-        $pdf->Cell(80,2,'COMPRA N°: '.$cabecera['com_cod'],0,1); 
+        $pdf->Cell(80,2,'COMPRA N°: '.$cabecera['com_cod'],0,1);
 
         $pdf->Ln();
         $pdf->SetFont('', 'B', 12);
         //detalles
         $pdf->SetFillColor(180, 180, 180);
 
-        $detalles = consultas::get_datos("select * from v_detalle_compras where com_cod=".$cabecera['com_cod']);
+        $detalles = consultas::get_datos("select * from v_detalle_compra where com_cod=".$cabecera['com_cod']);
         if (!empty($detalles)) {
             $pdf->Cell(15,5,'COD.',1,0,'C',1);
             $pdf->Cell(80,5,'DESCRIPCION',1,0,'C',1);
@@ -118,7 +118,7 @@ if (!empty($cabeceras)) {
             $pdf->Cell(30,5,'IMPUESTO',1,0,'C',1);
            $pdf->Ln();
            $pdf->SetFont('', '');
-           $pdf->SetFillColor(255, 255, 255);     
+           $pdf->SetFillColor(255, 255, 255);
            foreach ($detalles as $det) {
                $pdf->Cell(15,5,$det['art_cod'],1,0,'C',1);
                $pdf->Cell(80,5,$det['art_descri']." ".$det['mar_descri'],1,0,'L',1);
@@ -128,7 +128,7 @@ if (!empty($cabeceras)) {
                $pdf->Cell(30,5,$det['tipo_descri'],1,0,'C',1);
                $pdf->Ln();
            }
-           $pdf->SetFont('', 'B', 12);  
+           $pdf->SetFont('', 'B', 12);
             $pdf->SetFillColor(180, 180, 180);
            $pdf->Cell(135,5,'TOTAL: '.$cabeceras[0]['totalletra'],1,0,'L',1);
            $pdf->Cell(60,5,number_format($cabeceras[0]['com_total'],0,',','.'),1,0,'C',1);
@@ -136,7 +136,7 @@ if (!empty($cabeceras)) {
                $pdf->Ln();
         }else{
             $pdf->Cell(135,5,'La compra no tiene detalles cargados',0,'L',1);
-        }        
+        }
     }
 
 }else{

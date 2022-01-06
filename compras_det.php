@@ -92,7 +92,7 @@
                                     </div>
                                     <!-- FIN CABECERA-->
                                     <!-- INCICIO ITEMS PEDIDOS-->
-                                   <?php $pedidosdet = consultas::get_datos("select * from v_detalle_pedcompra where ped_com=".$compras[0]['ped_cod']
+                                   <?php $pedidosdet = consultas::get_datos("select * from v_detalle_orden where orden_cod=".$compras[0]['ped_cod']
                                     ." and art_cod not in (select art_cod from detalle_compra where com_cod=".$compras[0]['com_cod'].")");
 
                                     if (!empty($pedidosdet)) { ?>
@@ -122,12 +122,12 @@
                                                             <td data-title="#"><?php echo $peddet['art_cod'];?></td>
                                                             <td data-title="Descripción"><?php echo $peddet['art_descri']." ".$peddet['mar_descri'];?></td>
                                                             <td data-title="Deposito"><?php echo $peddet['dep_descri'];?></td>
-                                                            <td data-title="Cantidad"><?php echo $peddet['ped_cant'];?></td>
-                                                            <td data-title="Precio"><?php echo number_format($peddet['ped_precio'],0,",",".");?></td>
+                                                            <td data-title="Cantidad"><?php echo $peddet['orden_cant'];?></td>
+                                                            <td data-title="Precio"><?php echo number_format($peddet['orden_precio'],0,",",".");?></td>
                                                             <td data-title="Impuesto"><?php echo $peddet['tipo_descri'];?></td>
                                                             <td data-title="Precio"><?php echo number_format($peddet['subtotal'],0,",",".");?></td>
                                                             <td class="text-center">
-                                                                <a onclick="add(<?php echo $peddet['ped_com'];?>,<?php echo $compras[0]['com_cod'];?>,<?php echo $peddet['art_cod'];?>,<?php echo $peddet['dep_cod'];?>)" class="btn btn-success btn-sm" role='button'
+                                                                <a onclick="add(<?php echo $peddet['orden_cod'];?>,<?php echo $compras[0]['com_cod'];?>,<?php echo $peddet['art_cod'];?>,<?php echo $peddet['dep_cod'];?>)" class="btn btn-success btn-sm" role='button'
                                                                    data-title='Agregar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#editar">
                                                                     <span class="glyphicon glyphicon-plus"></span>
                                                                 </a>
@@ -155,7 +155,7 @@
                                                 <table class="table table-condensed table-striped table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th>
+                                                            <th># Articulo</th>
                                                             <th>Descripción</th>
                                                             <th>Deposito</th>
                                                             <th>Cantidad</th>
@@ -180,7 +180,7 @@
                                                                    data-title='Editar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#editar">
                                                                     <span class="glyphicon glyphicon-edit"></span>
                                                                 </a>
-                                                                <a onclick="borrar(<?php echo "'".$det['com_cod']."_".$det['art_cod']."_".$det['dep_cod']."_".$det['art_descri']." ".$det['mar_descri']."'"?>)" class="btn btn-danger btn-sm" role='button'
+                                                                <a onclick="borrar(<?php echo "'".$det['com_cod']."_".$det['art_cod']."_".$det['dep_cod']."_".$det['art_descri']."_".$det['mar_descri']."'"?>)" class="btn btn-danger btn-sm" role='button'
                                                                    data-title='Borrar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#borrar">
                                                                     <span class="glyphicon glyphicon-trash"></span>
                                                                 </a>
@@ -300,17 +300,17 @@
                           <div class="modal-content">
                               <div class="modal-header">
                                   <button type="button" class="close" data-dismiss="modal" arial-label="Close">x</button>
-                                  <h4 class="modal-title custom_align">Atenci&oacute;n!!!</h4>
+                                  <h4 class="modal-title custom_align">Proceda con Atenci&oacute;n!!!</h4>
                               </div>
-                                  <div class="modal-body">
-                                      <div class="alert alert-success" id="confirmacionc"></div>
-                                  </div>
-                                  <div class="modal-footer">
-                                      <a  id="sic" class="btn btn-primary">
-                                          <i class="fa fa-check"></i> Si</a>
-                                          <button type="button" class="btn btn-default" data-dismiss="modal">
-                                      <i class="fa fa-remove"></i> No</button>
-                                  </div>
+                              <div class="modal-body">
+                                  <div class="alert alert-success" id="confirmacionc"></div>
+                              </div>
+                              <div class="modal-footer">
+                                  <a  id="sic" class="btn btn-primary">
+                                      <i class="fa fa-check"></i> Si</a>
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">
+                                  <i class="fa fa-remove"></i> No</button>
+                              </div>
                           </div>
                       </div>
                   </div>
@@ -331,7 +331,7 @@
         function editar(com,art,dep){
             $.ajax({
                 type    : "GET",
-                url     : "/lp3/compras_dedit.php?vcom_cod="+com+"&vart_cod="+art+"&vdep_cod="+dep,
+                url     : "/taller/compras_dedit.php?vcom_cod="+com+"&vart_cod="+art+"&vdep_cod="+dep,
                 cache   : false,
                 beforeSend:function(){
                    $("#detalles").html('<img src="img/loader.gif"/><strong>Cargando...</strong>')
@@ -356,7 +356,7 @@
         function add(ped,ven,art,dep){
             $.ajax({
                 type    : "GET",
-                url     : "/lp3/compras_dadd.php?vped_com="+ped+"&vcom_cod="+ven+"&vart_cod="+art+"&vdep_cod="+dep,
+                url     : "/taller/compras_dadd.php?vorden_cod="+ped+"&vcom_cod="+ven+"&vart_cod="+art+"&vdep_cod="+dep,
                 cache   : false,
                 beforeSend:function(){
                    $("#detalles").html('<img src="img/loader.gif"/><strong>Cargando...</strong>')

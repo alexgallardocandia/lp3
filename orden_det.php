@@ -41,10 +41,10 @@
                                     <i class="ion ion-plus"></i><i class="fa fa-list"></i>
                                     <h3 class="box-title">Agregar Detalle Orden</h3>
                                     <div class="box-tools">
-                                        <a onclick="confirmar(<?php echo "'".$compras[0]['orden_cod']."_".$compras[0]['prv_razonsocial']."_".$compras[0]['orden_fecha']."'"?>)" class="btn btn-success btn-sm" role='button'
+                                        <!--<a onclick="confirmar(<?php echo "'".$compras[0]['orden_cod']."_".$compras[0]['prv_razonsocial']."_".$compras[0]['orden_fecha']."'"?>)" class="btn btn-success btn-sm" role='button'
                                         data-title='Confirmar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#confirmar">
                                         <span class="glyphicon glyphicon-check"></span> CONFIRMAR
-                                        </a>
+                                      </a>-->
                                         <a href="orden_index.php" class="btn btn-primary btn-sm" data-title='Volver' rel='tooltip' data-placement='top'><i class="fa fa-arrow-left"></i> VOLVER</a>
                                     </div>
                                 </div>
@@ -225,7 +225,7 @@
                                                             <select class="form-control select2" name="vart_cod" required="" id="articulo" onchange="precio()">
                                                                     <option value="">Seleccione un articulo</option>
                                                                     <?php foreach ($articulos as $articulo) { ?>
-                                                                      <option value="<?php echo $articulo['art_cod']."_".$articulo['art_preciov'];?>"><?php echo $articulo['art_descri']." ".$articulo['mar_descri'];?></option>
+                                                                      <option value="<?php echo $articulo['art_cod']."_".$articulo['art_precioc'];?>"><?php echo $articulo['art_descri']." ".$articulo['mar_descri'];?></option>
                                                                     <?php }?>
                                                                 </select>
                                                         </div>

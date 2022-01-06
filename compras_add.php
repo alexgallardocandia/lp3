@@ -54,23 +54,13 @@
                                         </div>
                                         <!-- AGREGAR LISTA DESPLEGABLE Proveedor -->
                                         <div class="form-group">
-                                            <label class="control-label col-lg-2 col-md-2">Proveedor:</label>
-                                            <div class="col-lg-6 col-md-6 col-sm-5">
-                                                <div class="input-group">
-                                                    <?php $proveedor = consultas::get_datos("select * from proveedor order by prv_razonsocial");?>
-                                                    <select class="form-control select2" name="vprv_cod" required="" id="proveedor" onchange="pedidos()">
-                                                        <option value="">Seleccione un proveedor</option>
-                                                        <?php foreach ($proveedor as $prv) { ?>
-                                                          <option value="<?php echo $prv['prv_cod'];?>"><?php echo "(".$prv['prv_ruc'].") ".$prv['prv_razonsocial'];?></option>
-                                                        <?php }?>
-                                                    </select>
-                                                    <span class="input-group-btn btn-flat">
-                                                        <a class="btn btn-primary" data-title ="Agregar Proveedor " rel="tooltip" data-placement="top"
-                                                           data-toggle="modal" data-target="#registrar">
-                                                            <i class="fa fa-plus"></i>
-                                                        </a>
-                                                    </span>
-                                                </div>
+                                            <label class="control-label col-lg-2 col-md-2">ORDEN:</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-5">
+                                                <select class="form-control select2 ped" name="vped_cod" required="" id="tipo_pedido" onchange="pedidos()">
+                                                    <option value="" selected>Seleccione una opcion</option>
+                                                    <option value="SIN">SIN ORDEN</option>
+                                                    <option value="CON">CON ORDEN</option>
+                                                </select>
                                             </div>
                                             <div id="det_pedidos"></div>
                                         </div>
@@ -85,6 +75,29 @@
                                                 <input type="number" name="vcom_plazo" class="form-control" min="0" max="36" value="0" required="" id="intervalo"/>
                                             </div>
                                         </div>
+                                        <!-- AGREGAR LISTA DESPLEGABLE Proveedor -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2 col-md-2">Proveedor:</label>
+                                            <div class="col-lg-6 col-md-6 col-sm-5">
+                                                <div class="input-group">
+                                                    <?php $proveedor = consultas::get_datos("select * from proveedor order by prv_razonsocial");?>
+                                                    <select class="form-control select2" name="vprv_cod" required="" id="proveedor">
+                                                        <option value="">Seleccione un proveedor</option>
+                                                        <?php foreach ($proveedor as $prv) { ?>
+                                                          <option value="<?php echo $prv['prv_cod'];?>"><?php echo "(".$prv['prv_ruc'].") ".$prv['prv_razonsocial'];?></option>
+                                                        <?php }?>
+                                                    </select>
+                                                    <span class="input-group-btn btn-flat">
+                                                        <a class="btn btn-primary" data-title ="Agregar Proveedor " rel="tooltip" data-placement="top"
+                                                           data-toggle="modal" data-target="#registrar">
+                                                            <i class="fa fa-plus"></i>
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- FIN LISTA DESPLEGABLE MARCA -->
                                         <div class="form-group">
                                             <label class="control-label col-lg-2 col-md-2 col-sm-2"> Empleado:</label>
                                             <div class="col-lg-4 col-md-4 col-sm-5">
@@ -130,9 +143,10 @@
             /*FUNCION PARA OBTENER LOS PEDIDOS
              * DEL CLIENTE SELECCCIONADO*/
             function pedidos(){
+              if($('#tipo_pedido').val()==='CON'){
                 $.ajax({
                    type     : "GET",
-                   url      : "/taller/compras_pedidos.php?vprv_cod="+$('#proveedor').val(),
+                   url      : "/taller/compras_pedidos.php?vorden_cod="+$('#pedido').val(),
                    cache    : false,
                 beforeSend:function(){
                    $("#det_pedidos").html('<img src="img/loader.gif"/><strong>Cargando...</strong>')
@@ -141,6 +155,9 @@
                     $("#det_pedidos").html(data)
                 }
                 });
+              }else{
+
+              }
             }
         </script>
     </body>

@@ -89,10 +89,10 @@
                                                             <td data-title='Estado'><?php echo $com['orden_estado'];?></td>
                                                             <td data-title='Acciones' class="text-center">
                                                                 <?php if($com['orden_estado']=="PENDIENTE"){?>
-                                                                <a onclick="confirmar(<?php echo "'".$com['orden_cod']."_".$com['prv_razonsocial']."_".$com['orden_fecha']."'"?>)" class="btn btn-info btn-sm" role='button'
+                                                              <!--  <a onclick="confirmar(<?php/* echo "'".$com['orden_cod']."_".$com['prv_razonsocial']."_".$com['orden_fecha']."'"*/?>)" class="btn btn-info btn-sm" role='button'
                                                                    data-title='Confirmar' rel='tooltip' data-placement='top' data-toggle="modal" data-target="#confirmar">
                                                                     <span class="glyphicon glyphicon-check"></span>
-                                                                </a>
+                                                                </a>-->
                                                                 <a href="orden_det.php?vorden_cod=<?php echo $com['orden_cod'];?>" class="btn btn-success btn-sm" role='button'
                                                                    data-title='Detalles' rel='tooltip' data-placement='top'>
                                                                     <span class="glyphicon glyphicon-list"></span>
