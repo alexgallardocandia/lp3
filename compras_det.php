@@ -303,7 +303,7 @@
                                   <h4 class="modal-title custom_align">Proceda con Atenci&oacute;n!!!</h4>
                               </div>
                               <div class="modal-body">
-                                  <div class="alert alert-success" id="confirmacionc"></div>
+                                  <div class="alert alert-success" id="conficompra"></div>
                               </div>
                               <div class="modal-footer">
                                   <a  id="sic" class="btn btn-primary">
@@ -350,7 +350,7 @@
             function confirmar(datos){
                 var dat = datos.split('_');
                 $('#sic').attr('href','compras_control.php?vcom_cod='+dat[0]+'&accion=2');
-                $('#confirmacionc').html('<span class="glyphicon glyphicon-warning-sign"></span> Desea confirmar la \n\
+                $('#conficompra').html('<span class="glyphicon glyphicon-warning-sign"></span> Desea confirmar la \n\
                 compra N° <strong>'+dat[0]+'</strong> de fecha <strong>'+dat[2]+'</strong> del proveedor <strong>'+dat[1]+'</strong> ?');
             };
         function add(ped,ven,art,dep){
